@@ -2452,6 +2452,16 @@
           {
             "required": false,
             "schema": {
+              "title": "Download Csv",
+              "type": "boolean",
+              "default": false
+            },
+            "name": "download_csv",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
               "title": "Page",
               "minimum": 1.0,
               "type": "integer",
