@@ -1257,6 +1257,14 @@
 <td>2</td>
 <td>The backoff factor for retries, to space out repeated retries.</td>
 </tr>
+<tr>
+<td><code>REQUIRE_MANUAL_REQUEST_APPROVAL</code></td>
+<td><code>FIDESOPS__EXECUTION__REQUIRE_MANUAL_REQUEST_APPROVAL</code></td>
+<td>bool</td>
+<td>False</td>
+<td>False</td>
+<td>Whether privacy requests require explicit approval to execute</td>
+</tr>
 </tbody>
 </table>
 <h2 id="an-example-fidesopstoml-configuration-file">An example <code>fidesops.toml</code> configuration file</h2>
@@ -1285,7 +1293,8 @@
 <span class="normal">23</span>
 <span class="normal">24</span>
 <span class="normal">25</span>
-<span class="normal">26</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>[database]
+<span class="normal">26</span>
+<span class="normal">27</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>[database]
 SERVER=&quot;db&quot;
 USER=&quot;postgres&quot;
 PASSWORD=&quot;a-password&quot;
@@ -1311,6 +1320,7 @@ OAUTH_ROOT_CLIENT_SECRET=&quot;fidesopsadminsecret&quot;
 TASK_RETRY_COUNT=3
 TASK_RETRY_DELAY=20
 TASK_RETRY_BACKOFF=2
+REQUIRE_MANUAL_REQUEST_APPROVAL=True
 </code></pre></div>
 </td></tr></table>
 <p>Please note: The configuration is case-sensitive, so the variables must be specified in UPPERCASE.</p>
@@ -1373,6 +1383,7 @@ TASK_RETRY_BACKOFF=2
 <li><code>TASK_RETRY_COUNT</code></li>
 <li><code>TASK_RETRY_DELAY</code></li>
 <li><code>TASK_RETRY_BACKOFF</code></li>
+<li><code>REQUIRE_MANUAL_REQUEST_APPROVAL</code></li>
 </ul>
 <p>For more information please see the <a href="/fidesops/api#operations-tag-Config">api docs</a>.</p>
                 

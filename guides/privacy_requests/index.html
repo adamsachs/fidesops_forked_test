@@ -591,6 +591,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-can-i-approve-or-deny-a-privacy-request" class="md-nav__link">
+    How can I approve or deny a Privacy Request?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#how-do-i-monitor-privacy-requests-as-they-execute" class="md-nav__link">
     How do I monitor Privacy Requests as they execute?
   </a>
@@ -963,6 +970,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-can-i-approve-or-deny-a-privacy-request" class="md-nav__link">
+    How can I approve or deny a Privacy Request?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#how-do-i-monitor-privacy-requests-as-they-execute" class="md-nav__link">
     How do I monitor Privacy Requests as they execute?
   </a>
@@ -1008,7 +1022,8 @@
 <ul>
 <li>What is a Privacy Request?</li>
 <li>How does a Privacy Request work in conjunction with a policy?</li>
-<li>How can I execute a Privacy Request?</li>
+<li>How can I submit a Privacy Request?</li>
+<li>How can I approve/deny a Privacy Request? </li>
 <li>How do I monitor Privacy Requests as they execute?</li>
 <li>How can I integrate the Privacy Request flow into my existing support tools?</li>
 <li>Specifying encryption of access request results </li>
@@ -1020,7 +1035,8 @@
 <p>For more information on Policies, see <a href="../policies/#rule-attributes">How-To: Configure Policies</a>.</p>
 <h2 id="how-do-i-submit-a-privacy-request">How do I submit a Privacy Request?</h2>
 <p>You submit a Privacy Request by calling the  <strong>Submit a Privacy Request</strong> operation. Here, 
-we submit  a request to apply the <code>a-demo-policy</code> Policy to all target data in the <a href="../../glossary/">Identity Graph</a> that can be generated from the email address <code>identity@example.com</code> and the phone number <code>+1 (123) 456 7891</code>.</p>
+we submit  a request to apply the <code>a-demo-policy</code> Policy to all target data in the <a href="../../glossary/">Identity Graph</a> that can be generated from the email address <code>identity@example.com</code> and the phone number <code>+1 (123) 456 7891</code>.
+Privacy Requests are executed immediately by default. This setting may be changed in the fidesops.toml configuration file.</p>
 <p><code>POST /api/v1/privacy-request</code></p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
@@ -1065,6 +1081,38 @@ we submit  a request to apply the <code>a-demo-policy</code> Policy to all targe
 <li><code>policy_key</code> should correspond to a previously configured <code>Policy</code> object. See <a href="../policies/">How-To: Configure Request Policies</a> for more information.</li>
 </ul>
 <p>A full list of attributes available to set on the Privacy Request can be found in the <a href="/fidesops/api#operations-Privacy_Requests-get_request_status_api_v1_privacy_request_get">API docs</a>.</p>
+<h2 id="how-can-i-approve-or-deny-a-privacy-request">How can I approve or deny a Privacy Request?</h2>
+<p>Privacy Requests are executed immediately by default. By setting the REQUIRE_MANUAL_REQUEST_APPROVAL variable in your fidesops.toml to TRUE, 
+Privacy Requests will require approval before executing. To approve or deny Privacy Requests, send a list of Privacy 
+Request ids to one of the following endpoints to approve or deny in bulk.</p>
+<p><code>PATCH api/v1/privacy-request/administrate/approve</code></p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;request_ids&quot;</span><span class="p">:[</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;pri_2d181f15-486d-4bcf-a871-f50ed9f95673&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;pri_2d181f15-486d-4bcf-a871-f50ed9f95673&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="p">]</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+</td></tr></table>
+<p><code>PATCH api/v1/privacy-request/administrate/deny</code></p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;request_ids&quot;</span><span class="p">:[</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;pri_2d181f15-486d-4bcf-a871-f50ed9f95673&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;pri_2d181f15-486d-4bcf-a871-f50ed9f95673&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="p">]</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+</td></tr></table>
 <h2 id="how-do-i-monitor-privacy-requests-as-they-execute">How do I monitor Privacy Requests as they execute?</h2>
 <p>Privacy Requests can be monitored at any time throughout their execution by submitting any of the following requests:</p>
 <p><code>GET api/v1/privacy-request?id=&lt;privacy_request_id&gt;</code></p>

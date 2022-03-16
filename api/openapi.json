@@ -2728,6 +2728,104 @@
         ]
       }
     },
+    "/api/v1/privacy-request/administrate/approve": {
+      "patch": {
+        "tags": [
+          "Privacy Requests"
+        ],
+        "summary": "Approve Privacy Request",
+        "description": "Approve and dispatch a list of privacy requests and/or report failure",
+        "operationId": "approve_privacy_request_api_v1_privacy_request_administrate_approve_patch",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReviewPrivacyRequestIds"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BulkReviewResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2ClientCredentialsBearer": [
+              "privacy-request:review"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/privacy-request/administrate/deny": {
+      "patch": {
+        "tags": [
+          "Privacy Requests"
+        ],
+        "summary": "Deny Privacy Request",
+        "description": "Deny a list of privacy requests and/or report failure",
+        "operationId": "deny_privacy_request_api_v1_privacy_request_administrate_deny_patch",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReviewPrivacyRequestIds"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BulkReviewResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2ClientCredentialsBearer": [
+              "privacy-request:review"
+            ]
+          }
+        ]
+      }
+    },
     "/api/v1/storage/{request_id}": {
       "post": {
         "tags": [
@@ -3781,6 +3879,31 @@
           }
         },
         "description": "Schema with mixed success/failure responses for Bulk Create/Update of StorageConfig."
+      },
+      "BulkReviewResponse": {
+        "title": "BulkReviewResponse",
+        "required": [
+          "succeeded",
+          "failed"
+        ],
+        "type": "object",
+        "properties": {
+          "succeeded": {
+            "title": "Succeeded",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PrivacyRequestResponse"
+            }
+          },
+          "failed": {
+            "title": "Failed",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BulkUpdateFailed"
+            }
+          }
+        },
+        "description": "Schema with mixed success/failure responses for Bulk Approve/Deny of PrivacyRequest responses."
       },
       "BulkUpdateFailed": {
         "title": "BulkUpdateFailed",
@@ -5353,6 +5476,15 @@
             "type": "string",
             "format": "date-time"
           },
+          "reviewed_at": {
+            "title": "Reviewed At",
+            "type": "string",
+            "format": "date-time"
+          },
+          "reviewed_by": {
+            "title": "Reviewed By",
+            "type": "string"
+          },
           "finished_processing_at": {
             "title": "Finished Processing At",
             "type": "string",
@@ -5387,8 +5519,10 @@
       "PrivacyRequestStatus": {
         "title": "PrivacyRequestStatus",
         "enum": [
-          "in_processing",
           "pending",
+          "approved",
+          "denied",
+          "in_processing",
           "complete",
           "paused",
           "error"
@@ -5417,6 +5551,15 @@
             "title": "Started Processing At",
             "type": "string",
             "format": "date-time"
+          },
+          "reviewed_at": {
+            "title": "Reviewed At",
+            "type": "string",
+            "format": "date-time"
+          },
+          "reviewed_by": {
+            "title": "Reviewed By",
+            "type": "string"
           },
           "finished_processing_at": {
             "title": "Finished Processing At",
@@ -5527,6 +5670,24 @@
           "csv"
         ],
         "description": "Response formats"
+      },
+      "ReviewPrivacyRequestIds": {
+        "title": "ReviewPrivacyRequestIds",
+        "required": [
+          "request_ids"
+        ],
+        "type": "object",
+        "properties": {
+          "request_ids": {
+            "title": "Request Ids",
+            "maxItems": 50,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "description": "Pass in a list of privacy request ids"
       },
       "RuleCreate": {
         "title": "RuleCreate",
