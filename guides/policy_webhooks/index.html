@@ -1333,7 +1333,7 @@ given to you in the original request header with the <code>reply-to-token</code>
 <p>If there are no derived identities, an empty <code>{}</code> request body will suffice.</p>
 <p>The <code>reply-to-token</code> is a JWE containing the current webhook id, scopes to access the callback endpoint, 
 and the datetime the token is issued.  We unpack this and resume the privacy request execution after the 
-specified webhook. The <code>reply-to-token</code> expires when the redis cache expires (<code>config.redis.DEFAULT_TTL_SECONDS</code>).
+specified webhook. The <code>reply-to-token</code> expires after a set amount of time, specified by the <code>config.execution.PRIVACY_REQUEST_DELAY_TIMEOUT</code> config variable.
 Once the redis cache expires, Fidesops no longer has the original identity data and the privacy request should be resubmitted.</p>
                 
               

@@ -1174,7 +1174,7 @@
 <td><code>FIDESOPS__REDIS__DEFAULT_TTL_SECONDS</code></td>
 <td>int</td>
 <td>3600</td>
-<td>3600</td>
+<td>604800</td>
 <td>The number of seconds for which data will live in Redis before automatically expiring</td>
 </tr>
 <tr>
@@ -1232,6 +1232,14 @@
 <td>---</td>
 <td>---</td>
 <td>---</td>
+</tr>
+<tr>
+<td><code>PRIVACY_REQUEST_DELAY_TIMEOUT</code></td>
+<td><code>FIDESOPS__EXECUTION__PRIVACY_REQUEST_DELAY_TIMEOUT</code></td>
+<td>int</td>
+<td>3600</td>
+<td>3600</td>
+<td>The amount of time to wait for actions delaying privacy requests, for example pre and post processing webhooks.</td>
 </tr>
 <tr>
 <td><code>TASK_RETRY_COUNT</code></td>

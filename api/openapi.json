@@ -2442,6 +2442,16 @@
           {
             "required": false,
             "schema": {
+              "title": "Include Identities",
+              "type": "boolean",
+              "default": false
+            },
+            "name": "include_identities",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
               "title": "Page",
               "minimum": 1.0,
               "type": "integer",
@@ -5496,6 +5506,13 @@
           "external_id": {
             "title": "External Id",
             "type": "string"
+          },
+          "identity": {
+            "title": "Identity",
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
           }
         },
         "description": "Schema to check the status of a PrivacyRequest"
@@ -5572,6 +5589,13 @@
           "external_id": {
             "title": "External Id",
             "type": "string"
+          },
+          "identity": {
+            "title": "Identity",
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
           },
           "results": {
             "title": "Results",

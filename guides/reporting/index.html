@@ -630,6 +630,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#view-a-privacy-requests-identity-data" class="md-nav__link">
+    View A Privacy Request's Identity Data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#view-individual-privacy-request-log-details" class="md-nav__link">
     View Individual Privacy Request Log Details
   </a>
@@ -996,6 +1003,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#view-a-privacy-requests-identity-data" class="md-nav__link">
+    View A Privacy Request's Identity Data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#view-individual-privacy-request-log-details" class="md-nav__link">
     View Individual Privacy Request Log Details
   </a>
@@ -1082,6 +1096,9 @@ information, or get more detailed information about the status of the requests o
 <p>To view all the execution logs for a Privacy Request, visit <code>/api/v1/privacy-request/{privacy_request_id}/logs</code>.
 Embedded logs in the previous endpoints are truncated at 50 logs.</p>
 <p>Check out the <a href="/fidesops/api#operations-Privacy_Requests-get_request_status_logs_api_v1_privacy_request__privacy_request_id__log_get">API docs here</a>.</p>
+<h2 id="view-a-privacy-requests-identity-data">View A Privacy Request's Identity Data</h2>
+<p>Use the optional <code>include_identities</code> query param to include all identity data that was submitted for the Privacy Request. Due to the nature of how Fidesops stores identity data, this data will expire automatically according to the <code>FIDESOPS__REDIS__DEFAULT_TTL_SECONDS</code> variable.</p>
+<p>If the identity data fetched by <code>include_identities</code> has expired, an empty JSON dictionary will be returned.</p>
 <h2 id="view-individual-privacy-request-log-details">View Individual Privacy Request Log Details</h2>
 <p>Use the <code>verbose</code> query param to see more details about individual collections visited as part of the Privacy Request along
 with individual statuses. Individual collection statuses include <code>in_processing</code>, <code>retrying</code>, <code>complete</code> or <code>error</code>.
