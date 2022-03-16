@@ -75,6 +75,7 @@ class SaaSRequest(BaseModel):
     preprocessors: Optional[List[Strategy]]
     postprocessors: Optional[List[Strategy]]
     pagination: Optional[Strategy]
+    and_fields: Optional[List[str]]
 
 
 class Endpoint(BaseModel):
@@ -152,7 +153,7 @@ class SaaSConfig(BaseModel):
                 if param.identity:
                     fields.append(ScalarField(name=param.name, identity=param.identity))
             if fields:
-                collections.append(Collection(name=endpoint.name, fields=fields))
+                collections.append(Collection(name=endpoint.name, fields=fields, and_fields=endpoint.requests["read"].and_fields))
 
         return Dataset(
             name=self.name,

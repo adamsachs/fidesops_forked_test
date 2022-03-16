@@ -394,6 +394,7 @@ class Collection(BaseModel):
     fields: List[Field]
     # an optional list of collections that this collection must run after
     after: Set[CollectionAddress] = set()
+    and_fields: Optional[List[str]] = []
 
     @property
     def field_dict(self) -> Dict[FieldPath, Field]:

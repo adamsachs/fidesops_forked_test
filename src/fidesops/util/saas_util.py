@@ -28,6 +28,10 @@ def extract_fields(aggregate: Dict, collections: List[Collection]) -> None:
                 field_dict[field.name] = field
 
 
+def get_collection(collections: List[Collection], name: str) -> Collection:
+    return next(collect for collect in collections if collect.name == name)
+
+
 def merge_datasets(dataset: Dataset, config_dataset: Dataset) -> Dataset:
     """
     Merges all Collections and Fields from the config_dataset into the dataset.
@@ -42,7 +46,7 @@ def merge_datasets(dataset: Dataset, config_dataset: Dataset) -> Dataset:
     collections = []
     for collection_name, field_dict in field_aggregate.items():
         collections.append(
-            Collection(name=collection_name, fields=list(field_dict.values()))
+            Collection(name=collection_name, fields=list(field_dict.values()), and_fields=get_collection(config_dataset.collections, collection_name).and_fields)
         )
 
     return Dataset(

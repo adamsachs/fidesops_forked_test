@@ -139,12 +139,16 @@ class SaaSConnector(BaseConnector[AuthenticatedClient]):
             if read_request.postprocessors is None:
                 rows.extend(response.json())
                 continue
+            if not response.json():
+                continue
             data_to_be_processed: Any = self.post_process(
                 node.address,
                 privacy_request.get_cached_identity_data(),
                 read_request.postprocessors,
                 response,
             )
+            if not data_to_be_processed:
+                continue
             if isinstance(data_to_be_processed, list):
                 if not all([isinstance(item, dict) for item in data_to_be_processed]):
                     raise PostProcessingException(

@@ -1,0 +1,81 @@
+saas_config:
+  fides_key: sentry_connector
+  name: Sentry SaaS Config
+  description: A sample schema representing the Sentry connector for Fidesops
+  version: 0.0.1
+
+  connector_params:
+    - name: host
+    - name: access_token
+
+  client_config:
+    protocol: https
+    host:
+      connector_param: host
+    authentication:
+      strategy: bearer_authentication
+      configuration:
+        token:
+          connector_param: access_token
+
+  test_request:
+    path: /api/0/organizations/
+
+  endpoints:
+    - name: projects
+      requests:
+        read:
+          path: /api/0/projects/
+          request_params:
+            - name: placeholder
+              type: query
+              identity: email
+    - name: user_feedback
+      requests:
+        read:
+          path: /api/0/projects/<organization_slug>/<project_slug>/user-feedback/
+          and_fields: [organization_slug, project_slug]
+          request_params:
+            - name: organization_slug
+              type: path
+              references:
+                - dataset: sentry_connector
+                  field: projects.organization.slug
+                  direction: from
+            - name: project_slug
+              type: path
+              references:
+                - dataset: sentry_connector
+                  field: projects.slug
+                  direction: from
+          postprocessors:
+            - strategy: filter
+              configuration:
+                field: email
+                value:
+                  identity: email
+    - name: users
+      requests:
+        read:
+          path: /api/0/projects/<organization_slug>/<project_slug>/users/
+          and_fields: [ organization_slug, project_slug ]
+          request_params:
+            - name: organization_slug
+              type: path
+              references:
+                - dataset: sentry_connector
+                  field: projects.organization.slug
+                  direction: from
+            - name: project_slug
+              type: path
+              references:
+                - dataset: sentry_connector
+                  field: projects.slug
+                  direction: from
+          postprocessors:
+            - strategy: filter
+              configuration:
+                field: email
+                value:
+                  identity: email
+

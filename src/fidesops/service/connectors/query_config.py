@@ -702,6 +702,18 @@ class SaaSQueryConfig(QueryConfig[SaaSRequestParams]):
 
         filtered_data = self.node.typed_filtered_values(input_data)
 
+        paired_fields = self.node.node.collection.and_fields or []
+
+
+        paired_data = {}
+        pairs = []
+        for field in paired_fields:
+            paired_data[field] = filtered_data[field]
+            del filtered_data[field]
+
+        if paired_data:
+            pairs = [dict(zip(paired_data, t)) for t in zip(*paired_data.values())]
+
         # populate the SaaS request with reference values from other datasets provided to this node
         request_params = []
         for string_path, reference_values in filtered_data.items():
@@ -709,6 +721,8 @@ class SaaSQueryConfig(QueryConfig[SaaSRequestParams]):
                 request_params.append(
                     self.generate_query({string_path: [value]}, policy)
                 )
+        for pair in pairs:
+            request_params.append(self.generate_query({key: [value] for key, value in pair.items()}, policy))
         return request_params
 
     def generate_query(
