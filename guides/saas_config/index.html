@@ -597,6 +597,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../saas_pagination/" class="md-nav__link">
+        SaaS Pagination
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../complex_fields/" class="md-nav__link">
         Annotate Complex Fields
       </a>
@@ -1207,15 +1219,7 @@
 <span class="normal">82</span>
 <span class="normal">83</span>
 <span class="normal">84</span>
-<span class="normal">85</span>
-<span class="normal">86</span>
-<span class="normal">87</span>
-<span class="normal">88</span>
-<span class="normal">89</span>
-<span class="normal">90</span>
-<span class="normal">91</span>
-<span class="normal">92</span>
-<span class="normal">93</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nt">saas_config</span><span class="p">:</span><span class="w"></span>
+<span class="normal">85</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nt">saas_config</span><span class="p">:</span><span class="w"></span>
 <span class="w">  </span><span class="nt">fides_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mailchimp_connector_example</span><span class="w"></span>
 <span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Mailchimp SaaS Config</span><span class="w"></span>
 <span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A sample schema representing the Mailchimp connector for Fidesops</span><span class="w"></span>
@@ -1253,10 +1257,8 @@
 <span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">dataset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mailchimp_connector_example</span><span class="w"></span>
 <span class="w">                </span><span class="nt">field</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conversations.id</span><span class="w"></span>
 <span class="w">                </span><span class="nt">direction</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">from</span><span class="w"></span>
+<span class="w">        </span><span class="nt">data_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conversation_messages</span><span class="w"></span>
 <span class="w">        </span><span class="nt">postprocessors</span><span class="p">:</span><span class="w"></span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">strategy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unwrap</span><span class="w"></span>
-<span class="w">            </span><span class="nt">configuration</span><span class="p">:</span><span class="w"></span>
-<span class="w">              </span><span class="nt">data_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conversation_messages</span><span class="w"></span>
 <span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">strategy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">filter</span><span class="w"></span>
 <span class="w">            </span><span class="nt">configuration</span><span class="p">:</span><span class="w"></span>
 <span class="w">              </span><span class="nt">field</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">from_email</span><span class="w"></span>
@@ -1276,10 +1278,7 @@
 <span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">placeholder</span><span class="w"></span>
 <span class="w">            </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">query</span><span class="w"></span>
 <span class="w">            </span><span class="nt">identity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">email</span><span class="w"></span>
-<span class="w">        </span><span class="nt">postprocessors</span><span class="p">:</span><span class="w"></span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">strategy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unwrap</span><span class="w"></span>
-<span class="w">            </span><span class="nt">configuration</span><span class="p">:</span><span class="w"></span>
-<span class="w">              </span><span class="nt">data_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conversations</span><span class="w"></span>
+<span class="w">        </span><span class="nt">data_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conversations</span><span class="w"></span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">member</span><span class="w"></span>
 <span class="w">    </span><span class="nt">requests</span><span class="p">:</span><span class="w"></span>
 <span class="w">      </span><span class="nt">read</span><span class="p">:</span><span class="w"></span>
@@ -1289,10 +1288,7 @@
 <span class="w">            </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">query</span><span class="w"></span>
 <span class="w">            </span><span class="nt">identity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">email</span><span class="w"></span>
 <span class="w">            </span><span class="nt">data_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span><span class="w"></span>
-<span class="w">        </span><span class="nt">postprocessors</span><span class="p">:</span><span class="w"></span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">strategy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unwrap</span><span class="w"></span>
-<span class="w">            </span><span class="nt">configuration</span><span class="p">:</span><span class="w"></span>
-<span class="w">              </span><span class="nt">data_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">exact_matches.members</span><span class="w"></span>
+<span class="w">        </span><span class="nt">data_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">exact_matches.members</span><span class="w"></span>
 <span class="w">      </span><span class="nt">update</span><span class="p">:</span><span class="w"></span>
 <span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/3.0/lists/&lt;list_id&gt;/members/&lt;subscriber_hash&gt;</span><span class="w"></span>
 <span class="w">        </span><span class="nt">request_params</span><span class="p">:</span><span class="w"></span>
@@ -1393,7 +1389,9 @@
 <li><code>default_value</code> Hard-coded default value for a <code>request_param</code>. This is most often used for query params since a static path param can just be included in the <code>path</code>.</li>
 </ul>
 </li>
+<li><code>data_path</code>: The expression used to access the collection information from the raw JSON response.</li>
 <li><code>postprocessors</code> An optional list of response post-processing strategies. We will ignore this for the example scenarios below but an in depth-explanation can be found under <a href="../saas_postprocessors/">SaaS Post-Processors</a></li>
+<li><code>pagination</code> An optional strategy used to get the next set of results from APIs with resources spanning multiple pages. Details can be found under <a href="../saas_pagination/">SaaS Pagination</a></li>
 </ul>
 </li>
 </ul>

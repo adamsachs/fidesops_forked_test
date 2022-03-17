@@ -4100,14 +4100,10 @@
       },
       "ConnectorParamRef": {
         "title": "ConnectorParamRef",
-        "required": [
-          "connector_param"
-        ],
         "type": "object",
         "properties": {
           "connector_param": {
-            "title": "Connector Param",
-            "type": "string"
+            "title": "Connector Param"
           }
         },
         "description": "A reference to a value in the connector params (by name)"
@@ -5676,15 +5672,8 @@
             ],
             "type": "string"
           },
-          "default_value": {
-            "title": "Default Value"
-          },
           "identity": {
             "title": "Identity",
-            "type": "string"
-          },
-          "data_type": {
-            "title": "Data Type",
             "type": "string"
           },
           "references": {
@@ -5693,6 +5682,13 @@
             "items": {
               "$ref": "#/components/schemas/FidesopsDatasetReference"
             }
+          },
+          "default_value": {
+            "title": "Default Value"
+          },
+          "data_type": {
+            "title": "Data Type",
+            "type": "string"
           }
         },
         "description": "A request parameter which includes the type (query or path) along with a default value or\na reference to an identity value or a value in another dataset."
@@ -5892,13 +5888,6 @@
             "title": "Data Path",
             "type": "string"
           },
-          "preprocessors": {
-            "title": "Preprocessors",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Strategy"
-            }
-          },
           "postprocessors": {
             "title": "Postprocessors",
             "type": "array",
@@ -5910,7 +5899,7 @@
             "$ref": "#/components/schemas/Strategy"
           }
         },
-        "description": "A single request with a static or dynamic path, and the request params needed to build the request.\nAlso includes optional strategies for pre/postprocessing and pagination."
+        "description": "A single request with a static or dynamic path, and the request params needed to build the request.\nAlso includes optional strategies for postprocessing and pagination."
       },
       "SaaSSchema": {
         "title": "SaaSSchema",

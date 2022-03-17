@@ -9,14 +9,14 @@
       
       
       
-        <link rel="canonical" href="https://ethyca.github.io/fidesops/development/pull_requests/">
+        <link rel="canonical" href="https://ethyca.github.io/fidesops/guides/saas_pagination/">
       
       <link rel="icon" href="../../img/favicon.ico">
       <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.2.5">
     
     
       
-        <title>Pull Requests - Fidesops</title>
+        <title>SaaS Pagination - Fidesops</title>
       
     
     
@@ -75,7 +75,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#pull-requests" class="md-skip">
+        <a href="#saas-pagination" class="md-skip">
           Skip to content
         </a>
       
@@ -104,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Pull Requests
+              SaaS Pagination
             
           </span>
         </div>
@@ -375,12 +375,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
       
       <label class="md-nav__link" for="__nav_4">
         How-To Guides
@@ -398,7 +400,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guides/oauth/" class="md-nav__link">
+      <a href="../oauth/" class="md-nav__link">
         Authenticate with OAuth
       </a>
     </li>
@@ -410,7 +412,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guides/database_connectors/" class="md-nav__link">
+      <a href="../database_connectors/" class="md-nav__link">
         Connect SQL and NoSQL Databases
       </a>
     </li>
@@ -422,7 +424,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guides/datasets/" class="md-nav__link">
+      <a href="../datasets/" class="md-nav__link">
         Configure Datasets
       </a>
     </li>
@@ -434,7 +436,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guides/saas_connectors/" class="md-nav__link">
+      <a href="../saas_connectors/" class="md-nav__link">
         Connect to SaaS Applications
       </a>
     </li>
@@ -446,7 +448,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guides/saas_config/" class="md-nav__link">
+      <a href="../saas_config/" class="md-nav__link">
         SaaS Configuration
       </a>
     </li>
@@ -458,7 +460,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guides/saas_postprocessors/" class="md-nav__link">
+      <a href="../saas_postprocessors/" class="md-nav__link">
         SaaS Post-Processors
       </a>
     </li>
@@ -468,11 +470,138 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../guides/saas_pagination/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          SaaS Pagination
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         SaaS Pagination
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#supported-strategies" class="md-nav__link">
+    Supported Strategies
+  </a>
+  
+    <nav class="md-nav" aria-label="Supported Strategies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#offset" class="md-nav__link">
+    Offset
+  </a>
+  
+    <nav class="md-nav" aria-label="Offset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration-details" class="md-nav__link">
+    Configuration Details
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#link" class="md-nav__link">
+    Link
+  </a>
+  
+    <nav class="md-nav" aria-label="Link">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration-details_1" class="md-nav__link">
+    Configuration Details
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cursor" class="md-nav__link">
+    Cursor
+  </a>
+  
+    <nav class="md-nav" aria-label="Cursor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration-details_2" class="md-nav__link">
+    Configuration Details
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples_1" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -482,7 +611,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guides/complex_fields/" class="md-nav__link">
+      <a href="../complex_fields/" class="md-nav__link">
         Annotate Complex Fields
       </a>
     </li>
@@ -494,7 +623,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guides/query_execution/" class="md-nav__link">
+      <a href="../query_execution/" class="md-nav__link">
         Preview Query Execution
       </a>
     </li>
@@ -506,7 +635,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guides/policies/" class="md-nav__link">
+      <a href="../policies/" class="md-nav__link">
         Create Request Policies
       </a>
     </li>
@@ -518,7 +647,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guides/masking_strategies/" class="md-nav__link">
+      <a href="../masking_strategies/" class="md-nav__link">
         Configure Data Masking Strategies
       </a>
     </li>
@@ -530,7 +659,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guides/storage/" class="md-nav__link">
+      <a href="../storage/" class="md-nav__link">
         Configure Storage Destinations
       </a>
     </li>
@@ -542,7 +671,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guides/policy_webhooks/" class="md-nav__link">
+      <a href="../policy_webhooks/" class="md-nav__link">
         Configure Policy Webhooks
       </a>
     </li>
@@ -554,7 +683,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guides/privacy_requests/" class="md-nav__link">
+      <a href="../privacy_requests/" class="md-nav__link">
         Execute Privacy Requests
       </a>
     </li>
@@ -566,7 +695,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guides/reporting/" class="md-nav__link">
+      <a href="../reporting/" class="md-nav__link">
         Report on Privacy Requests
       </a>
     </li>
@@ -578,7 +707,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guides/onetrust/" class="md-nav__link">
+      <a href="../onetrust/" class="md-nav__link">
         Configure OneTrust Integration
       </a>
     </li>
@@ -590,7 +719,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guides/configuration_reference/" class="md-nav__link">
+      <a href="../configuration_reference/" class="md-nav__link">
         Configuration Reference
       </a>
     </li>
@@ -602,7 +731,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guides/users/" class="md-nav__link">
+      <a href="../users/" class="md-nav__link">
         Admin UI
       </a>
     </li>
@@ -666,14 +795,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
       
       <label class="md-nav__link" for="__nav_8">
         Development
@@ -691,7 +818,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../overview/" class="md-nav__link">
+      <a href="../../development/overview/" class="md-nav__link">
         Overview
       </a>
     </li>
@@ -703,7 +830,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../contributing_details/" class="md-nav__link">
+      <a href="../../development/contributing_details/" class="md-nav__link">
         Contributing Details
       </a>
     </li>
@@ -715,7 +842,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../code_style/" class="md-nav__link">
+      <a href="../../development/code_style/" class="md-nav__link">
         Code Style
       </a>
     </li>
@@ -727,7 +854,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../documentation/" class="md-nav__link">
+      <a href="../../development/documentation/" class="md-nav__link">
         Documentation
       </a>
     </li>
@@ -739,7 +866,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../testing/" class="md-nav__link">
+      <a href="../../development/testing/" class="md-nav__link">
         Testing
       </a>
     </li>
@@ -749,21 +876,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../development/pull_requests/" class="md-nav__link">
         Pull Requests
       </a>
-      
     </li>
   
 
@@ -773,7 +890,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../releases/" class="md-nav__link">
+      <a href="../../development/releases/" class="md-nav__link">
         Releases
       </a>
     </li>
@@ -889,6 +1006,108 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#supported-strategies" class="md-nav__link">
+    Supported Strategies
+  </a>
+  
+    <nav class="md-nav" aria-label="Supported Strategies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#offset" class="md-nav__link">
+    Offset
+  </a>
+  
+    <nav class="md-nav" aria-label="Offset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration-details" class="md-nav__link">
+    Configuration Details
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#link" class="md-nav__link">
+    Link
+  </a>
+  
+    <nav class="md-nav" aria-label="Link">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration-details_1" class="md-nav__link">
+    Configuration Details
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cursor" class="md-nav__link">
+    Cursor
+  </a>
+  
+    <nav class="md-nav" aria-label="Cursor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration-details_2" class="md-nav__link">
+    Configuration Details
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples_1" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -900,15 +1119,127 @@
               
                 
                 
-                <h1 id="pull-requests">Pull Requests</h1>
-<hr />
-<p>Pull Requests are the primary unit of work within the Fides project. All code changes are expected to be submitted via a PR, and as such here are a few requirements for submitting PRs:</p>
-<ol>
-<li>Completely fill out the provided pull request template</li>
-<li>If you're unsure about a potential feature implementation or there is anything else that needs discussing, feel free to ask for an early review/feedback in the comments of the PR.</li>
-<li>Make sure that all checks are passing and all boxes have been checked before passing it off to a reviewer for a final approval. PR reviews require other people to spend their time, so please be courteous and double-check your work before passing it to a reviewer.</li>
-<li>If there is a bug in a PR, fix it <em>within</em> that PR, do not create another PR to fix a bug in a separate PR.</li>
-</ol>
+                <h1 id="saas-pagination">SaaS Pagination</h1>
+<p>These pagination strategies allow Fidesops to incrementally retrieve content from SaaS APIs. APIs can vary in the way subsequent pages are accessed so these configurable options aim to cover a majority of common use cases.</p>
+<h2 id="supported-strategies">Supported Strategies</h2>
+<ul>
+<li><code>offset</code>: Iterates through the available pages by incrementing the value of a query param.</li>
+<li><code>link</code>: Uses links returned in the headers or the body to get to the next page.</li>
+<li><code>cursor</code>: Uses a value from the last-retrieved object to use as a query param pointing to the next set of results.</li>
+</ul>
+<h3 id="offset">Offset</h3>
+<p>This strategy can be used to iterate through pages, or to define the offset for a batch of results. In either case, this strategy increments the specified query param by the <code>increment_by</code> value until no more results are returned or the <code>limit</code> is reached.</p>
+<h4 id="configuration-details">Configuration Details</h4>
+<ul>
+<li><code>incremental_param</code> (<em>str</em>): The query param to increment the value for.</li>
+<li><code>increment_by</code> (<em>int</em>): The value to increment the <code>incremental_param</code> after each set of results.</li>
+<li><code>limit</code> (<em>str</em>): The max value the <code>incremental_param</code> can reach.</li>
+</ul>
+<h4 id="example">Example</h4>
+<p>This example would take the <code>page</code> query param and increment it by 1 until the limit of 10 is reached or no more results are returned (whichever comes first).
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nt">pagination</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">strategy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">offset</span><span class="w"></span>
+<span class="w">  </span><span class="nt">configuration</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">incremental_param</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">page</span><span class="w"></span>
+<span class="w">    </span><span class="nt">increment_by</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w"></span>
+<span class="w">    </span><span class="nt">limit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span><span class="w"></span>
+</code></pre></div>
+</td></tr></table></p>
+<h3 id="link">Link</h3>
+<p>This strategy is used when the link to the next page is provided as part of the API response. The link is read from the headers or the body and used to get the next page of results.</p>
+<h4 id="configuration-details_1">Configuration Details</h4>
+<ul>
+<li><code>source</code> (<em>str</em>): The location to get the link from, can be either <code>headers</code> or <code>body</code>.</li>
+<li><code>path</code> (<em>str</em>): The expression used to refer to the location of the link within the headers or the body.</li>
+</ul>
+<h4 id="examples">Examples</h4>
+<p>The source value of <code>headers</code> is meant to be used with responses following <a href="https://datatracker.ietf.org/doc/html/rfc5988#page-6">RFC 5988</a>.
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>Link: &lt;https://api.host.com/conversations?page_ref=ad6f38r3&gt;; rel=&quot;next&quot;,
+      &lt;https://api.host.com/conversations?page_ref=gss8ap4g&gt;; rel=&quot;prev&quot;
+</code></pre></div>
+</td></tr></table>
+Given this Link header, we can specify a path of <code>link.next</code> (case-insensitive). This indicates that we are looking in the <code>Link</code> header with a <code>rel</code> of next.
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nt">pagination</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">strategy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">link</span><span class="w"></span>
+<span class="w">  </span><span class="nt">configuration</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">headers</span><span class="w"></span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">link.next</span><span class="w"></span>
+</code></pre></div>
+</td></tr></table></p>
+<p>We can also access links returned in the body. If we receive this value in the body:
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>{
+  ...
+  &quot;next_page&quot;: {
+      &quot;url&quot;: &quot;https://api.host.com/conversations?page_ref=ad6f38r3&quot;
+  }
+  ...
+}
+</code></pre></div>
+</td></tr></table>
+We can use the path value of <code>next_page.url</code> as the expression to access the url.
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nt">pagination</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">strategy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">link</span><span class="w"></span>
+<span class="w">  </span><span class="nt">configuration</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">body</span><span class="w"></span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">next_page.url</span><span class="w"></span>
+</code></pre></div>
+</td></tr></table></p>
+<h3 id="cursor">Cursor</h3>
+<p>This strategy is used when a specific value from a response object is used as a cursor to determine the starting point for the next set of results.</p>
+<h4 id="configuration-details_2">Configuration Details</h4>
+<ul>
+<li><code>cursor_param</code> (<em>str</em>): The name of the query param to assign the cursor value to.</li>
+<li><code>field</code> (<em>str</em>): The field to read from the most recently retrieved object to use as the cursor value.</li>
+</ul>
+<h4 id="examples_1">Examples</h4>
+<p>If an API request returns the following:
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>{
+  &quot;messages&quot;: [
+      {&quot;id&quot;: 1, msg: &quot;this is&quot;},
+      {&quot;id&quot;: 2, msg: &quot;a&quot;}
+      {&quot;id&quot;: 3, msg: &quot;test&quot;}
+  ]
+}
+</code></pre></div>
+</td></tr></table>
+This strategy will take the field <code>id</code> from the last item returned and generate a new request with a query param of <code>after=3</code>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nt">pagination</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">strategy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cursor</span><span class="w"></span>
+<span class="w">  </span><span class="nt">configuration</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">cursor_param</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">after</span><span class="w"></span>
+<span class="w">    </span><span class="nt">field</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">id</span><span class="w"></span>
+</code></pre></div>
+</td></tr></table></p>
                 
               
               
@@ -965,9 +1296,9 @@
       
         
         <a
-          href="../testing/"
+          href="../saas_postprocessors/"
           class="md-footer__link md-footer__link--prev"
-          aria-label="Previous: Testing"
+          aria-label="Previous: SaaS Post-Processors"
           rel="prev"
         >
           <div class="md-footer__button md-icon">
@@ -978,7 +1309,7 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Testing
+              SaaS Post-Processors
             </div>
           </div>
         </a>
@@ -988,9 +1319,9 @@
       
         
         <a
-          href="../releases/"
+          href="../complex_fields/"
           class="md-footer__link md-footer__link--next"
-          aria-label="Next: Releases"
+          aria-label="Next: Annotate Complex Fields"
           rel="next"
         >
           <div class="md-footer__title">
@@ -998,7 +1329,7 @@
               <span class="md-footer__direction">
                 Next
               </span>
-              Releases
+              Annotate Complex Fields
             </div>
           </div>
           <div class="md-footer__button md-icon">
