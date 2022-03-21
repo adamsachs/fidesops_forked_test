@@ -1379,8 +1379,9 @@
 <p>This is where we define how we are going to access and update each collection in the corresponding Dataset. The endpoint section contains the following members:</p>
 <ul>
 <li><code>name</code> This name corresponds to a Collection in the corresponding Dataset.</li>
-<li><code>requests</code> A map of read and update requests for this collection. Each collection can define a way to read and a way to update the data. Each request is made up of:<ul>
+<li><code>requests</code> A map of <code>read</code> and <code>update</code> requests for this collection. Each collection can define a way to read and a way to update the data. Each request is made up of:<ul>
 <li><code>path</code> A static or dynamic resource path. The dynamic portions of the path are enclosed within angle brackets <code>&lt;dynamic_value&gt;</code> and are replaced with values from request_params.</li>
+<li><code>method</code> (optional) HTTP method. Defaults to <code>GET</code> for read requests, <code>PUT</code> for update requests. Other options are <code>POST</code>, <code>PATCH</code>, or <code>DELETE</code>.</li>
 <li><code>request_params</code><ul>
 <li><code>name</code> Used as the key for query param values, or to map this param to a value placeholder in the path.</li>
 <li><code>type</code> Either "query" or "path".</li>

@@ -4667,6 +4667,19 @@
         },
         "description": "option to preserve format in masking"
       },
+      "HTTPMethod": {
+        "title": "HTTPMethod",
+        "enum": [
+          "GET",
+          "POST",
+          "PATCH",
+          "PUT",
+          "DELETE",
+          "OPTIONS",
+          "HEAD"
+        ],
+        "description": "Enum to represent HTTP Methods"
+      },
       "HTTPValidationError": {
         "title": "HTTPValidationError",
         "type": "object",
@@ -5876,6 +5889,9 @@
           "path": {
             "title": "Path",
             "type": "string"
+          },
+          "method": {
+            "$ref": "#/components/schemas/HTTPMethod"
           },
           "request_params": {
             "title": "Request Params",
