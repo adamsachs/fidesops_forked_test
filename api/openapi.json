@@ -942,7 +942,7 @@
           "OAuth"
         ],
         "summary": "Acquire Access Token",
-        "description": "Given a set of credentials, returns an access token if they are correct. Raises 401\nexception if not",
+        "description": "Returns an access token if given credentials are correct, raises 401\nexception if not",
         "operationId": "acquire_access_token_api_v1_oauth_token_post",
         "requestBody": {
           "content": {
@@ -5681,7 +5681,8 @@
             "title": "Type",
             "enum": [
               "query",
-              "path"
+              "path",
+              "body"
             ],
             "type": "string"
           },
@@ -5704,7 +5705,7 @@
             "type": "string"
           }
         },
-        "description": "A request parameter which includes the type (query or path) along with a default value or\na reference to an identity value or a value in another dataset."
+        "description": "A request parameter which includes the type (query, path, or body) along with a default value or\na reference to an identity value or a value in another dataset."
       },
       "ResponseFormat": {
         "title": "ResponseFormat",
@@ -5892,6 +5893,10 @@
           },
           "method": {
             "$ref": "#/components/schemas/HTTPMethod"
+          },
+          "body": {
+            "title": "Body",
+            "type": "string"
           },
           "request_params": {
             "title": "Request Params",

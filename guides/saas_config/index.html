@@ -553,6 +553,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#data-update-with-a-dynamic-http-body" class="md-nav__link">
+    Data update with a dynamic HTTP body
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1085,6 +1092,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#data-update-with-a-dynamic-http-body" class="md-nav__link">
+    Data update with a dynamic HTTP body
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1380,11 +1394,12 @@
 <ul>
 <li><code>name</code> This name corresponds to a Collection in the corresponding Dataset.</li>
 <li><code>requests</code> A map of <code>read</code> and <code>update</code> requests for this collection. Each collection can define a way to read and a way to update the data. Each request is made up of:<ul>
-<li><code>path</code> A static or dynamic resource path. The dynamic portions of the path are enclosed within angle brackets <code>&lt;dynamic_value&gt;</code> and are replaced with values from request_params.</li>
+<li><code>path</code> A static or dynamic resource path. The dynamic portions of the path are enclosed within angle brackets <code>&lt;dynamic_value&gt;</code> and are replaced with values from <code>request_params</code>.</li>
 <li><code>method</code> (optional) HTTP method. Defaults to <code>GET</code> for read requests, <code>PUT</code> for update requests. Other options are <code>POST</code>, <code>PATCH</code>, or <code>DELETE</code>.</li>
+<li><code>body</code> (optional) static or dynamic request body, with dynamic portions enclosed in brackets, just like <code>path</code>. These dynamic values will be replaced with values from <code>request_params</code>. For update requests, you'll need to additionally annotated <code>&lt;masked_object_fields&gt;</code> as a placeholder for the fidesops generated update values.</li>
 <li><code>request_params</code><ul>
 <li><code>name</code> Used as the key for query param values, or to map this param to a value placeholder in the path.</li>
-<li><code>type</code> Either "query" or "path".</li>
+<li><code>type</code> Can be "query", "path", or "body".</li>
 <li><code>references</code> These are the same as <code>references</code> in the Dataset schema. It is used to define the source of the value for the given request_param.</li>
 <li><code>identity</code> This denotes the identity value that this request_param should take.</li>
 <li><code>default_value</code> Hard-coded default value for a <code>request_param</code>. This is most often used for query params since a static path param can just be included in the <code>path</code>.</li>
@@ -1536,6 +1551,58 @@ Then the update request would be:
 </code></pre></div>
 </td></tr></table>
 and the contents of the body would be masked according to the configured <a href="../policies/">policy</a>.</p>
+<h4 id="data-update-with-a-dynamic-http-body">Data update with a dynamic HTTP body</h4>
+<p>Sometimes, the update request needs a different body structure than what we obtain from the read request. In this example, we use a custom HTTP body that contains our masked object fields.
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>update:
+  path: /crm/v3/objects/contacts
+  body: {
+    &quot;properties&quot;: {
+      &lt;masked_object_fields&gt;
+      &quot;user_ref_id&quot;: &lt;user_ref_id&gt;            
+    }
+  }
+  request_params:
+    - name: user_ref_id
+      type: body
+      references:
+        - dataset: dataset_test
+          field: contacts.user_ref_id
+          direction: from
+</code></pre></div>
+</td></tr></table></p>
+<p>Fidesops will replace the <code>&lt;masked_object_fields&gt;</code> placeholder with the result of the policy-driven masking service, for example <code>{'company': None, 'email': None}</code>.</p>
+<p>This results in the following update request:
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="l l-Scalar l-Scalar-Plain">PUT /crm/v3/objects/contacts</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">{</span><span class="w"></span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">&quot;properties&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="w"></span>
+<span class="w">      </span><span class="s">&quot;company&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;None&quot;</span><span class="p p-Indicator">,</span><span class="w"></span>
+<span class="w">      </span><span class="s">&quot;email&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;None&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="s">&quot;user_ref_id&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;p983u4ncp3q8u4r&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">}</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+</code></pre></div>
+</td></tr></table></p>
 <h2 id="how-does-this-relate-to-graph-traversal">How does this relate to graph traversal?</h2>
 <p>Fidesops uses the available Datasets to <a href="../query_execution/">generate a graph</a> of all reachable data and the dependencies between Datasets. For SaaS connectors, all the references and identities are stored in the <code>request_params</code>, therefore we must merge both the SaaS config and Dataset to provide a complete picture for the graph traversal. Using Mailchimp as an example the Dataset collection and SaaS config endpoints for <code>messages</code> looks like this:</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
