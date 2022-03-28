@@ -4091,9 +4091,6 @@
           "name": {
             "title": "Name",
             "type": "string"
-          },
-          "default_value": {
-            "title": "Default Value"
           }
         },
         "description": "Used to define the required parameters for the connector (user-provided and constants)"
@@ -4693,6 +4690,24 @@
           }
         }
       },
+      "Header": {
+        "title": "Header",
+        "required": [
+          "name",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "value": {
+            "title": "Value",
+            "type": "string"
+          }
+        }
+      },
       "KeyfileCreds": {
         "title": "KeyfileCreds",
         "required": [
@@ -5185,6 +5200,35 @@
           }
         }
       },
+      "ParamValue": {
+        "title": "ParamValue",
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "identity": {
+            "title": "Identity",
+            "type": "string"
+          },
+          "references": {
+            "title": "References",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FidesopsDatasetReference"
+            }
+          },
+          "connector_param": {
+            "title": "Connector Param",
+            "type": "string"
+          }
+        },
+        "description": "A named variable which can be sourced from identities, dataset references, or connector params. These values\nare used to replace the placeholders in the path, header, query, and body param values."
+      },
       "Policy": {
         "title": "Policy",
         "required": [
@@ -5629,6 +5673,31 @@
         },
         "description": "The schema for the more detailed PrivacyRequest response containing detailed execution logs."
       },
+      "QueryParam": {
+        "title": "QueryParam",
+        "required": [
+          "name",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "value": {
+            "title": "Value",
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          }
+        }
+      },
       "RedshiftDocsSchema": {
         "title": "RedshiftDocsSchema",
         "type": "object",
@@ -5664,48 +5733,6 @@
         },
         "additionalProperties": false,
         "description": "Redshift Secrets Schema for API Docs"
-      },
-      "RequestParam": {
-        "title": "RequestParam",
-        "required": [
-          "name",
-          "type"
-        ],
-        "type": "object",
-        "properties": {
-          "name": {
-            "title": "Name",
-            "type": "string"
-          },
-          "type": {
-            "title": "Type",
-            "enum": [
-              "query",
-              "path",
-              "body"
-            ],
-            "type": "string"
-          },
-          "default_value": {
-            "title": "Default Value"
-          },
-          "identity": {
-            "title": "Identity",
-            "type": "string"
-          },
-          "references": {
-            "title": "References",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/FidesopsDatasetReference"
-            }
-          },
-          "connector_param": {
-            "title": "Connector Param",
-            "type": "string"
-          }
-        },
-        "description": "A request parameter which includes the type (query, path, or body) along with a default value or\na reference to an identity value or a value in another dataset."
       },
       "ResponseFormat": {
         "title": "ResponseFormat",
@@ -5867,7 +5894,7 @@
             "$ref": "#/components/schemas/SaaSRequest"
           }
         },
-        "description": "Used to store endpoint and param configurations for a SaaS connector.\nThis is done to separate the details of how to make the API calls\nfrom the data provided by a given API collection.\n\nThe required fields for the config are converted into a Dataset which is\nmerged with the standard Fidesops Dataset to provide a complete set of dependencies\nfor the graph traversal"
+        "description": "Used to store endpoint and param configurations for a SaaS connector.\nThis is done to separate the details of how to make the API calls\nfrom the data provided by a given API collection.\n\nThe required fields for the config are converted into a Dataset which is\nmerged with the standard Fidesops Dataset to provide a complete set of dependencies\nfor the graph traversal."
       },
       "SaaSConfigValidationDetails": {
         "title": "SaaSConfigValidationDetails",
@@ -5883,7 +5910,8 @@
       "SaaSRequest": {
         "title": "SaaSRequest",
         "required": [
-          "path"
+          "path",
+          "method"
         ],
         "type": "object",
         "properties": {
@@ -5894,15 +5922,29 @@
           "method": {
             "$ref": "#/components/schemas/HTTPMethod"
           },
+          "headers": {
+            "title": "Headers",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Header"
+            }
+          },
+          "query_params": {
+            "title": "Query Params",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QueryParam"
+            }
+          },
           "body": {
             "title": "Body",
             "type": "string"
           },
-          "request_params": {
-            "title": "Request Params",
+          "param_values": {
+            "title": "Param Values",
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/RequestParam"
+              "$ref": "#/components/schemas/ParamValue"
             }
           },
           "data_path": {
@@ -5928,7 +5970,8 @@
             "default": []
           }
         },
-        "description": "A single request with a static or dynamic path, and the request params needed to build the request.\nAlso includes optional strategies for postprocessing and pagination."
+        "additionalProperties": false,
+        "description": "A single request with static or dynamic path, headers, query, and body params.\nAlso specifies the names and sources for the param values needed to build the request.\n\nIncludes optional strategies for postprocessing and pagination."
       },
       "SaaSSchema": {
         "title": "SaaSSchema",

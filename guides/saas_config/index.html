@@ -564,6 +564,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#request-params-in-more-detail" class="md-nav__link">
+    Request params in more detail
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#example-scenarios" class="md-nav__link">
     Example scenarios
   </a>
@@ -1157,6 +1164,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#request-params-in-more-detail" class="md-nav__link">
+    Request params in more detail
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#example-scenarios" class="md-nav__link">
     Example scenarios
   </a>
@@ -1327,7 +1341,14 @@
 <span class="normal">82</span>
 <span class="normal">83</span>
 <span class="normal">84</span>
-<span class="normal">85</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nt">saas_config</span><span class="p">:</span><span class="w"></span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span>
+<span class="normal">90</span>
+<span class="normal">91</span>
+<span class="normal">92</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nt">saas_config</span><span class="p">:</span><span class="w"></span>
 <span class="w">  </span><span class="nt">fides_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mailchimp_connector_example</span><span class="w"></span>
 <span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Mailchimp SaaS Config</span><span class="w"></span>
 <span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A sample schema representing the Mailchimp connector for Fidesops</span><span class="w"></span>
@@ -1351,16 +1372,17 @@
 <span class="w">          </span><span class="nt">connector_param</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">api_key</span><span class="w"></span>
 
 <span class="w">  </span><span class="nt">test_request</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GET</span><span class="w"></span>
 <span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/3.0/lists</span><span class="w"></span>
 
 <span class="w">  </span><span class="nt">endpoints</span><span class="p">:</span><span class="w"></span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">messages</span><span class="w"></span>
 <span class="w">    </span><span class="nt">requests</span><span class="p">:</span><span class="w"></span>
 <span class="w">      </span><span class="nt">read</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GET</span><span class="w"></span>
 <span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/3.0/conversations/&lt;conversation_id&gt;/messages</span><span class="w"></span>
-<span class="w">        </span><span class="nt">request_params</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">param_values</span><span class="p">:</span><span class="w"></span>
 <span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conversation_id</span><span class="w"></span>
-<span class="w">            </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">path</span><span class="w"></span>
 <span class="w">            </span><span class="nt">references</span><span class="p">:</span><span class="w"></span>
 <span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">dataset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mailchimp_connector_example</span><span class="w"></span>
 <span class="w">                </span><span class="nt">field</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conversations.id</span><span class="w"></span>
@@ -1375,39 +1397,45 @@
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conversations</span><span class="w"></span>
 <span class="w">    </span><span class="nt">requests</span><span class="p">:</span><span class="w"></span>
 <span class="w">      </span><span class="nt">read</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GET</span><span class="w"></span>
 <span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/3.0/conversations</span><span class="w"></span>
-<span class="w">        </span><span class="nt">request_params</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">query_params</span><span class="p">:</span><span class="w"></span>
 <span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">count</span><span class="w"></span>
-<span class="w">            </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">query</span><span class="w"></span>
-<span class="w">            </span><span class="nt">default_value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span><span class="w"></span>
+<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span><span class="w"></span>
 <span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">offset</span><span class="w"></span>
-<span class="w">            </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">query</span><span class="w"></span>
-<span class="w">            </span><span class="nt">default_value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span><span class="w"></span>
+<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span><span class="w"></span>
+<span class="w">        </span><span class="nt">param_values</span><span class="p">:</span><span class="w"></span>
 <span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">placeholder</span><span class="w"></span>
-<span class="w">            </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">query</span><span class="w"></span>
 <span class="w">            </span><span class="nt">identity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">email</span><span class="w"></span>
 <span class="w">        </span><span class="nt">data_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conversations</span><span class="w"></span>
+<span class="w">        </span><span class="nt">pagination</span><span class="p">:</span><span class="w"></span>
+<span class="w">          </span><span class="nt">strategy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">offset</span><span class="w"></span>
+<span class="w">          </span><span class="nt">configuration</span><span class="p">:</span><span class="w"></span>
+<span class="w">            </span><span class="nt">incremental_param</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">offset</span><span class="w"></span>
+<span class="w">            </span><span class="nt">increment_by</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span><span class="w"></span>
+<span class="w">            </span><span class="nt">limit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10000</span><span class="w"></span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">member</span><span class="w"></span>
 <span class="w">    </span><span class="nt">requests</span><span class="p">:</span><span class="w"></span>
 <span class="w">      </span><span class="nt">read</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GET</span><span class="w"></span>
 <span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/3.0/search-members</span><span class="w"></span>
-<span class="w">        </span><span class="nt">request_params</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">query_params</span><span class="p">:</span><span class="w"></span>
 <span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">query</span><span class="w"></span>
-<span class="w">            </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">query</span><span class="w"></span>
+<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;email&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="nt">param_values</span><span class="p">:</span><span class="w"></span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">email</span><span class="w"></span>
 <span class="w">            </span><span class="nt">identity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">email</span><span class="w"></span>
-<span class="w">            </span><span class="nt">data_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span><span class="w"></span>
 <span class="w">        </span><span class="nt">data_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">exact_matches.members</span><span class="w"></span>
 <span class="w">      </span><span class="nt">update</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PUT</span><span class="w"></span>
 <span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/3.0/lists/&lt;list_id&gt;/members/&lt;subscriber_hash&gt;</span><span class="w"></span>
-<span class="w">        </span><span class="nt">request_params</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">param_values</span><span class="p">:</span><span class="w"></span>
 <span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">list_id</span><span class="w"></span>
-<span class="w">            </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">path</span><span class="w"></span>
 <span class="w">            </span><span class="nt">references</span><span class="p">:</span><span class="w"></span>
 <span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">dataset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mailchimp_connector_example</span><span class="w"></span>
 <span class="w">                </span><span class="nt">field</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">member.list_id</span><span class="w"></span>
 <span class="w">                </span><span class="nt">direction</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">from</span><span class="w"></span>
 <span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">subscriber_hash</span><span class="w"></span>
-<span class="w">            </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">path</span><span class="w"></span>
 <span class="w">            </span><span class="nt">references</span><span class="p">:</span><span class="w"></span>
 <span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">dataset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mailchimp_connector_example</span><span class="w"></span>
 <span class="w">                </span><span class="nt">field</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">member.id</span><span class="w"></span>
@@ -1479,7 +1507,9 @@
 <h4 id="test-request">Test request</h4>
 <p>Once the base client is defined we can use a <code>test_request</code> to verify our hostname and credentials. This is in the form of an idempotent request (usually a read). The testing approach is the same for any <a href="../database_connectors/#testing-your-connection">ConnectionConfig test</a>.
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nt">test_request</span><span class="p">:</span><span class="w"></span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nt">test_request</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GET</span><span class="w"></span>
 <span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/3.0/lists</span><span class="w"></span>
 </code></pre></div>
 </td></tr></table></p>
@@ -1487,26 +1517,88 @@
 <p>This is where we define how we are going to access and update each collection in the corresponding Dataset. The endpoint section contains the following members:</p>
 <ul>
 <li><code>name</code> This name corresponds to a Collection in the corresponding Dataset.</li>
-<li><code>requests</code> A map of <code>read</code> and <code>update</code> requests for this collection. Each collection can define a way to read and a way to update the data. Each request is made up of:<ul>
-<li><code>path</code> A static or dynamic resource path. The dynamic portions of the path are enclosed within angle brackets <code>&lt;dynamic_value&gt;</code> and are replaced with values from <code>request_params</code>.</li>
-<li><code>method</code> (optional) HTTP method. Defaults to <code>GET</code> for read requests, <code>PUT</code> for update requests. Other options are <code>POST</code>, <code>PATCH</code>, or <code>DELETE</code>.</li>
-<li><code>body</code> (optional) static or dynamic request body, with dynamic portions enclosed in brackets, just like <code>path</code>. These dynamic values will be replaced with values from <code>request_params</code>. For update requests, you'll need to additionally annotated <code>&lt;masked_object_fields&gt;</code> as a placeholder for the fidesops generated update values.</li>
-<li><code>request_params</code><ul>
-<li><code>name</code> Used as the key for query param values, or to map this param to a value placeholder in the path.</li>
-<li><code>type</code> Can be "query", "path", or "body".</li>
+<li><code>requests</code> A map of <code>read</code>, <code>update</code>, and <code>delete</code> requests for this collection. Each collection can define a way to read and a way to update the data. Each request is made up of:<ul>
+<li><code>method</code> The HTTP method used for the endpoint.</li>
+<li><code>path</code> A static or dynamic resource path. The dynamic portions of the path are enclosed within angle brackets <code>&lt;dynamic_value&gt;</code> and are replaced with values from <code>param_values</code>.</li>
+<li><code>headers</code> and <code>query_params</code> The HTTP headers and query parameters to include in the request.<ul>
+<li><code>name</code> the value to use for the header or query param name.</li>
+<li><code>value</code> can be a static value, one or more of <code>&lt;dynamic_value&gt;</code>, or a mix of static and dynamic values (prefix <code>&lt;value&gt;</code>) which will be replaced with the value sourced from the <code>request_param</code> with a matching name.</li>
+</ul>
+</li>
+<li><code>body</code> (optional) static or dynamic request body, with dynamic portions enclosed in brackets, just like <code>path</code>. These dynamic values will be replaced with values from <code>param_values</code>. For update requests, you'll need to additionally annotate <code>&lt;masked_object_fields&gt;</code> as a placeholder for the Fidesops generated update values.</li>
+<li><code>param_values</code><ul>
+<li><code>name</code> Used as the key to reference this value from dynamic values in the path, headers, query, or body params.</li>
 <li><code>references</code> These are the same as <code>references</code> in the Dataset schema. It is used to define the source of the value for the given request_param.</li>
 <li><code>identity</code> Used to access the identity values passed into the privacy request such as email or phone number.</li>
-<li><code>default_value</code> Hard-coded default value for a <code>request_param</code>. This is most often used for query params since a static path param can just be included in the <code>path</code>.</li>
 <li><code>connector_param</code> Used to access the user-configured secrets for the connection.</li>
 </ul>
 </li>
 <li><code>data_path</code>: The expression used to access the collection information from the raw JSON response.</li>
 <li><code>postprocessors</code> An optional list of response post-processing strategies. We will ignore this for the example scenarios below but an in depth-explanation can be found under <a href="../saas_postprocessors/">SaaS Post-Processors</a></li>
-<li><code>pagination</code> An optional strategy used to get the next set of results from APIs with resources spanning multiple pages. Details can be found under <a href="../saas_pagination/">SaaS Pagination</a></li>
+<li><code>pagination</code> An optional strategy used to get the next set of results from APIs with resources spanning multiple pages. Details can be found under <a href="../saas_pagination/">SaaS Pagination</a>.</li>
 <li><code>grouped_inputs</code> An optional list of reference fields whose inputs are dependent upon one another.  For example, an endpoint may need both an <code>organization_id</code> and a <code>project_id</code> from another endpoint.  These aren't independent values, as a <code>project_id</code> belongs to an <code>organization_id</code>.  You would specify this as ["organization_id", "project_id"].</li>
 </ul>
 </li>
 </ul>
+<h2 id="request-params-in-more-detail">Request params in more detail</h2>
+<p>The <code>param_values</code> list is what provides the values to our various placeholders in the path, headers, query params and body. Values can be <code>identities</code> such as email or phone number, <code>references</code> to fields in other collections, or <code>connector_params</code> which are defined as part of configuring a SaaS connector. Whenever a placeholder is encountered, the placeholder name is looked up in the list of <code>param_values</code> and corresponding value is used instead. Here is an example of placeholders being used in various locations:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nt">messages</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">requests</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">read</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GET</span><span class="w"></span>
+<span class="w">      </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/&lt;version&gt;/messages</span><span class="w"></span>
+<span class="w">      </span><span class="nt">headers</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Content-Type</span><span class="w"></span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">application/json</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">On-Behalf-Of</span><span class="w"></span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;email&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Token</span><span class="w"></span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Custom &lt;api_key&gt;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">query_params</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">count</span><span class="w"></span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="nt">organization</span><span class="p">:</span><span class="w"></span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;org_id&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="nt">where</span><span class="p">:</span><span class="w"></span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">properties[&quot;$email&quot;]==&quot;&lt;email&gt;&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">param_values</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">email</span><span class="w"></span>
+<span class="w">          </span><span class="nt">identity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">email</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">api_key</span><span class="w"></span>
+<span class="w">          </span><span class="nt">connector_param</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">api_key</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">org_id</span><span class="w"></span>
+<span class="w">          </span><span class="nt">connector_param</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">org_id</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="w"></span>
+<span class="w">          </span><span class="nt">connector_param</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="w"></span>
+</code></pre></div>
+</td></tr></table>
 <h2 id="example-scenarios">Example scenarios</h2>
 <h4 id="dynamic-path-with-dataset-references">Dynamic path with dataset references</h4>
 <p><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -1524,10 +1616,10 @@
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">messages</span><span class="w"></span>
 <span class="w">    </span><span class="nt">requests</span><span class="p">:</span><span class="w"></span>
 <span class="w">      </span><span class="nt">read</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GET</span><span class="w"></span>
 <span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/3.0/conversations/&lt;conversation_id&gt;/messages</span><span class="w"></span>
-<span class="w">        </span><span class="nt">request_params</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">param_values</span><span class="p">:</span><span class="w"></span>
 <span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conversation_id</span><span class="w"></span>
-<span class="w">            </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">path</span><span class="w"></span>
 <span class="w">            </span><span class="nt">references</span><span class="p">:</span><span class="w"></span>
 <span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">dataset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mailchimp_connector_example</span><span class="w"></span>
 <span class="w">                </span><span class="nt">field</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conversations.id</span><span class="w"></span>
@@ -1545,26 +1637,32 @@ In this example, we define <code>/3.0/conversations/&lt;conversation_id&gt;/mess
 </code></pre></div>
 </td></tr></table>
 <h4 id="identity-as-a-query-param">Identity as a query param</h4>
-<p><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span>
-<span class="normal">7</span>
-<span class="normal">8</span>
-<span class="normal">9</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nt">endpoints</span><span class="p">:</span><span class="w"></span>
+<p><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nt">endpoints</span><span class="p">:</span><span class="w"></span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">member</span><span class="w"></span>
 <span class="w">    </span><span class="nt">requests</span><span class="p">:</span><span class="w"></span>
 <span class="w">      </span><span class="nt">read</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GET</span><span class="w"></span>
 <span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/3.0/search-members</span><span class="w"></span>
-<span class="w">        </span><span class="nt">request_params</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">query_params</span><span class="p">:</span><span class="w"></span>
 <span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">query</span><span class="w"></span>
-<span class="w">            </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">query</span><span class="w"></span>
+<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;email&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="nt">param_values</span><span class="p">:</span><span class="w"></span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">email</span><span class="w"></span>
 <span class="w">            </span><span class="nt">identity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">email</span><span class="w"></span>
 </code></pre></div>
 </td></tr></table>
-In this example, the <code>email</code> identity value is used as a param named "query" and would look like this:
+In this example, the placeholder in the <code>query</code> query param would be replaced with the value of the <code>request_param</code> with a name of <code>email</code>, which is the <code>email</code> identity. The result would look like this:
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>GET /3.0/search-members?query=name@email.com
 </code></pre></div>
 </td></tr></table></p>
@@ -1585,21 +1683,19 @@ In this example, the <code>email</code> identity value is used as a param named 
 <span class="normal">14</span>
 <span class="normal">15</span>
 <span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nt">endpoints</span><span class="p">:</span><span class="w"></span>
+<span class="normal">17</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nt">endpoints</span><span class="p">:</span><span class="w"></span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">member</span><span class="w"></span>
 <span class="w">    </span><span class="nt">requests</span><span class="p">:</span><span class="w"></span>
 <span class="w">      </span><span class="nt">update</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PUT</span><span class="w"></span>
 <span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/3.0/lists/&lt;list_id&gt;/members/&lt;subscriber_hash&gt;</span><span class="w"></span>
-<span class="w">        </span><span class="nt">request_params</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">param_values</span><span class="p">:</span><span class="w"></span>
 <span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">list_id</span><span class="w"></span>
-<span class="w">            </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">path</span><span class="w"></span>
 <span class="w">            </span><span class="nt">references</span><span class="p">:</span><span class="w"></span>
 <span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">dataset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mailchimp_connector_example</span><span class="w"></span>
 <span class="w">                </span><span class="nt">field</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">member.list_id</span><span class="w"></span>
 <span class="w">                </span><span class="nt">direction</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">from</span><span class="w"></span>
 <span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">subscriber_hash</span><span class="w"></span>
-<span class="w">            </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">path</span><span class="w"></span>
 <span class="w">            </span><span class="nt">references</span><span class="p">:</span><span class="w"></span>
 <span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">dataset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mailchimp_connector_example</span><span class="w"></span>
 <span class="w">                </span><span class="nt">field</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">member.id</span><span class="w"></span>
@@ -1663,21 +1759,21 @@ and the contents of the body would be masked according to the configured <a href
 <span class="normal">12</span>
 <span class="normal">13</span>
 <span class="normal">14</span>
-<span class="normal">15</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>update:
-  path: /crm/v3/objects/contacts
-  body: {
-    &quot;properties&quot;: {
-      &lt;masked_object_fields&gt;
-      &quot;user_ref_id&quot;: &lt;user_ref_id&gt;            
-    }
-  }
-  request_params:
-    - name: user_ref_id
-      type: body
-      references:
-        - dataset: dataset_test
-          field: contacts.user_ref_id
-          direction: from
+<span class="normal">15</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nt">update</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PUT</span><span class="w"></span>
+<span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/crm/v3/objects/contacts</span><span class="w"></span>
+<span class="w">  </span><span class="nt">body</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="w"></span>
+<span class="w">    </span><span class="s">&quot;properties&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="w"></span>
+<span class="w">      </span><span class="nv">&lt;masked_object_fields&gt;</span><span class="w"></span>
+<span class="w">      </span><span class="nv">&quot;user_ref_id&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">&lt;user_ref_id&gt;</span><span class="w">            </span>
+<span class="w">    </span><span class="p p-Indicator">}</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">}</span><span class="w"></span>
+<span class="w">  </span><span class="nt">param_values</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">user_ref_id</span><span class="w"></span>
+<span class="w">      </span><span class="nt">references</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">dataset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dataset_test</span><span class="w"></span>
+<span class="w">          </span><span class="nt">field</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">contacts.user_ref_id</span><span class="w"></span>
+<span class="w">          </span><span class="nt">direction</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">from</span><span class="w"></span>
 </code></pre></div>
 </td></tr></table></p>
 <p>Fidesops will replace the <code>&lt;masked_object_fields&gt;</code> placeholder with the result of the policy-driven masking service, for example <code>{'company': None, 'email': None}</code>.</p>
@@ -1689,7 +1785,9 @@ and the contents of the body would be masked according to the configured <a href
 <span class="normal">5</span>
 <span class="normal">6</span>
 <span class="normal">7</span>
-<span class="normal">8</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="l l-Scalar l-Scalar-Plain">PUT /crm/v3/objects/contacts</span><span class="w"></span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="l l-Scalar l-Scalar-Plain">PUT /crm/v3/objects/contacts</span><span class="w"></span>
+
 <span class="l l-Scalar l-Scalar-Plain">{</span><span class="w"></span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">&quot;properties&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="w"></span>
 <span class="w">      </span><span class="s">&quot;company&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;None&quot;</span><span class="p p-Indicator">,</span><span class="w"></span>
@@ -1700,7 +1798,7 @@ and the contents of the body would be masked according to the configured <a href
 </code></pre></div>
 </td></tr></table></p>
 <h2 id="how-does-this-relate-to-graph-traversal">How does this relate to graph traversal?</h2>
-<p>Fidesops uses the available Datasets to <a href="../query_execution/">generate a graph</a> of all reachable data and the dependencies between Datasets. For SaaS connectors, all the references and identities are stored in the <code>request_params</code>, therefore we must merge both the SaaS config and Dataset to provide a complete picture for the graph traversal. Using Mailchimp as an example the Dataset collection and SaaS config endpoints for <code>messages</code> looks like this:</p>
+<p>Fidesops uses the available Datasets to <a href="../query_execution/">generate a graph</a> of all reachable data and the dependencies between Datasets. For SaaS connectors, all the references and identities are stored in the <code>param_values</code>, therefore we must merge both the SaaS config and Dataset to provide a complete picture for the graph traversal. Using Mailchimp as an example the Dataset collection and SaaS config endpoints for <code>messages</code> looks like this:</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -1764,10 +1862,10 @@ and the contents of the body would be masked according to the configured <a href
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">messages</span><span class="w"></span>
 <span class="w">    </span><span class="nt">requests</span><span class="p">:</span><span class="w"></span>
 <span class="w">      </span><span class="nt">read</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GET</span><span class="w"></span>
 <span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/3.0/conversations/&lt;conversation_id&gt;/messages</span><span class="w"></span>
-<span class="w">        </span><span class="nt">request_params</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">param_values</span><span class="p">:</span><span class="w"></span>
 <span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conversation_id</span><span class="w"></span>
-<span class="w">            </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">path</span><span class="w"></span>
 <span class="w">            </span><span class="nt">references</span><span class="p">:</span><span class="w"></span>
 <span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">dataset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mailchimp_connector_example</span><span class="w"></span>
 <span class="w">                </span><span class="nt">field</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conversations.id</span><span class="w"></span>
@@ -1835,7 +1933,7 @@ and the contents of the body would be masked according to the configured <a href
 </td></tr></table>
 Notice how the <code>conversation_id</code> field is updated with a reference from <code>mailchimp_connector_example.conversations.id</code>. This means that the <code>conversations</code> collection must be retrieved first to forward the conversation IDs to the messages collection for further processing.</p>
 <h2 id="what-if-a-collection-has-no-dependencies">What if a collection has no dependencies?</h2>
-<p>In the Mailchimp example, you might have noticed the <code>placeholder</code> query param.
+<p>In the Mailchimp example, you might have noticed the <code>placeholder</code> request param.
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -1849,25 +1947,23 @@ Notice how the <code>conversation_id</code> field is updated with a reference fr
 <span class="normal">11</span>
 <span class="normal">12</span>
 <span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nt">endpoints</span><span class="p">:</span><span class="w"></span>
+<span class="normal">14</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nt">endpoints</span><span class="p">:</span><span class="w"></span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conversations</span><span class="w"></span>
 <span class="w">    </span><span class="nt">requests</span><span class="p">:</span><span class="w"></span>
 <span class="w">      </span><span class="nt">read</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GET</span><span class="w"></span>
 <span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/3.0/conversations</span><span class="w"></span>
-<span class="w">        </span><span class="nt">request_params</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">query_params</span><span class="p">:</span><span class="w"></span>
 <span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">count</span><span class="w"></span>
-<span class="w">            </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">query</span><span class="w"></span>
-<span class="w">            </span><span class="nt">default_value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span><span class="w"></span>
+<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span><span class="w"></span>
 <span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">offset</span><span class="w"></span>
-<span class="w">            </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">query</span><span class="w"></span>
-<span class="w">            </span><span class="nt">default_value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span><span class="w"></span>
+<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span><span class="w"></span>
+<span class="w">        </span><span class="nt">param_values</span><span class="p">:</span><span class="w"></span>
 <span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">placeholder</span><span class="w"></span>
-<span class="w">            </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">query</span><span class="w"></span>
 <span class="w">            </span><span class="nt">identity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">email</span><span class="w"></span>
 </code></pre></div>
 </td></tr></table>
-Some endpoints might not have any external dependencies on <code>identity</code> or Dataset <code>reference</code> values. The way the Fidesops <a href="../query_execution/">graph traversal</a> interprets this is as an unreachable collection. At this time, the way to mark this as reachable is to include <code>request_param</code> with a "synthetic link" (an unused query param) to an identity or a reference. In the future we plan on having collections like these still be considered reachable even without this synthetic placeholder (the request_param name is not relevant, we just chose placeholder for this example).</p>
+Some endpoints might not have any external dependencies on <code>identity</code> or Dataset <code>reference</code> values. The way the Fidesops <a href="../query_execution/">graph traversal</a> interprets this is as an unreachable collection. At this time, the way to mark this as reachable is to include a <code>request_param</code> with an identity or a reference. In the future we plan on having collections like these still be considered reachable even without this placeholder (the request_param name is not relevant, we just chose placeholder for this example).</p>
 
               
             </article>

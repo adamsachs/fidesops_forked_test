@@ -1192,12 +1192,14 @@
 <span class="normal">13</span>
 <span class="normal">14</span>
 <span class="normal">15</span>
-<span class="normal">16</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nt">endpoints</span><span class="p">:</span><span class="w"></span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nt">endpoints</span><span class="p">:</span><span class="w"></span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">messages</span><span class="w"></span>
 <span class="w">    </span><span class="nt">requests</span><span class="p">:</span><span class="w"></span>
 <span class="w">      </span><span class="nt">read</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GET</span><span class="w"></span>
 <span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/conversations/&lt;id&gt;/messages</span><span class="w"></span>
-<span class="w">        </span><span class="nt">request_params</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">param_values</span><span class="p">:</span><span class="w"></span>
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">...</span><span class="w"></span>
 <span class="w">        </span><span class="nt">postprocessors</span><span class="p">:</span><span class="w"></span>
 <span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">strategy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unwrap</span><span class="w"></span>
@@ -1244,9 +1246,9 @@
 <p>Identity data passed in through request:</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>{
-  &quot;email&quot;: &quot;somebody@email.com&quot;
-}
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;somebody@email.com&quot;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 </td></tr></table>
 <p>Data to be processed:
@@ -1261,18 +1263,18 @@
 <span class="normal"> 9</span>
 <span class="normal">10</span>
 <span class="normal">11</span>
-<span class="normal">12</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>data = [
-    {
-        &quot;id&quot;: 1397429347
-        &quot;email_contact&quot;: &quot;somebody@email.com&quot;
-        &quot;name&quot;: &quot;Somebody Awesome&quot;
-    },
-    {
-        &quot;id&quot;: 238475234
-        &quot;email_contact&quot;: &quot;somebody-else@email.com&quot;
-        &quot;name&quot;: &quot;Somebody Cool&quot;
-    }
-]
+<span class="normal">12</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="p">[</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1397429347</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;email_contact&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;somebody@email.com&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Somebody Awesome&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">238475234</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;email_contact&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;somebody-else@email.com&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Somebody Cool&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">]</span><span class="w"></span>
 </code></pre></div>
 </td></tr></table></p>
 <p>Result:
@@ -1282,13 +1284,13 @@
 <span class="normal">4</span>
 <span class="normal">5</span>
 <span class="normal">6</span>
-<span class="normal">7</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>result = [
-          {
-              &quot;id&quot;: 1397429347
-              &quot;email_contact&quot;: &quot;somebody@email.com&quot;
-              &quot;name&quot;: &quot;Somebody Awesome&quot;
-          }
-        ]
+<span class="normal">7</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="p">[</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1397429347</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;email_contact&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;somebody@email.com&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Somebody Awesome&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">]</span><span class="w"></span>
 </code></pre></div>
 </td></tr></table></p>
 <p>Note: Type casting is not supported at this time. We currently only support filtering by string values. e.g. <code>bob@mail.com</code> and not <code>12344245</code>.</p>
@@ -1310,35 +1312,31 @@
 </code></pre></div>
 </td></tr></table></p>
 <p>Data to be processed:
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>data = {
-  &quot;exact_matches&quot;: {
-    &quot;members&quot;: [
-      { &quot;howdy&quot;: 123 },
-      { &quot;meow&quot;: 841 }
-    ]
-  }
-}
-
-data_path = exact_matches.members
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;exact_matches&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;members&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;howdy&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;meow&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">841</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">]</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w">   </span>
 </code></pre></div>
 </td></tr></table>
 Result:
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
-<span class="normal">4</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>result = [
-  { &quot;howdy&quot;: 123 },
-  { &quot;meow&quot;: 841 }
-]
+<span class="normal">4</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="p">[</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;howdy&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;meow&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">841</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="p">]</span><span class="w"></span>
 </code></pre></div>
 </td></tr></table></p>
 
