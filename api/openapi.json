@@ -5686,6 +5686,9 @@
             ],
             "type": "string"
           },
+          "default_value": {
+            "title": "Default Value"
+          },
           "identity": {
             "title": "Identity",
             "type": "string"
@@ -5697,11 +5700,8 @@
               "$ref": "#/components/schemas/FidesopsDatasetReference"
             }
           },
-          "default_value": {
-            "title": "Default Value"
-          },
-          "data_type": {
-            "title": "Data Type",
+          "connector_param": {
+            "title": "Connector Param",
             "type": "string"
           }
         },
@@ -5918,6 +5918,14 @@
           },
           "pagination": {
             "$ref": "#/components/schemas/Strategy"
+          },
+          "grouped_inputs": {
+            "title": "Grouped Inputs",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "default": []
           }
         },
         "description": "A single request with a static or dynamic path, and the request params needed to build the request.\nAlso includes optional strategies for postprocessing and pagination."
