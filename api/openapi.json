@@ -5539,7 +5539,8 @@
         "title": "PrivacyRequestResponse",
         "required": [
           "id",
-          "status"
+          "status",
+          "policy"
         ],
         "type": "object",
         "properties": {
@@ -5584,6 +5585,9 @@
             "additionalProperties": {
               "type": "string"
             }
+          },
+          "policy": {
+            "$ref": "#/components/schemas/Policy"
           }
         },
         "description": "Schema to check the status of a PrivacyRequest"
@@ -5622,6 +5626,7 @@
         "required": [
           "id",
           "status",
+          "policy",
           "results"
         ],
         "type": "object",
@@ -5667,6 +5672,9 @@
             "additionalProperties": {
               "type": "string"
             }
+          },
+          "policy": {
+            "$ref": "#/components/schemas/Policy"
           },
           "results": {
             "title": "Results",
@@ -5976,6 +5984,11 @@
               "type": "string"
             },
             "default": []
+          },
+          "ignore_errors": {
+            "title": "Ignore Errors",
+            "type": "boolean",
+            "default": false
           }
         },
         "additionalProperties": false,
