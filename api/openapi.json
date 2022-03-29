@@ -4200,6 +4200,14 @@
             "additionalProperties": {
               "$ref": "#/components/schemas/SaaSRequest"
             }
+          },
+          "after": {
+            "title": "After",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "default": []
           }
         },
         "description": "An collection of read/update/delete requests which corresponds to a FidesopsDataset collection (by name)"

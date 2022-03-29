@@ -1517,6 +1517,7 @@
 <p>This is where we define how we are going to access and update each collection in the corresponding Dataset. The endpoint section contains the following members:</p>
 <ul>
 <li><code>name</code> This name corresponds to a Collection in the corresponding Dataset.</li>
+<li><code>after</code> To configure if this endpoint should run after other endpoints or collections. This should be a list of collection addresses, for example: <code>after: [ mailchimp_connector_example.member ]</code> would cause the current endpoint to run after the member endpoint.</li>
 <li><code>requests</code> A map of <code>read</code>, <code>update</code>, and <code>delete</code> requests for this collection. Each collection can define a way to read and a way to update the data. Each request is made up of:<ul>
 <li><code>method</code> The HTTP method used for the endpoint.</li>
 <li><code>path</code> A static or dynamic resource path. The dynamic portions of the path are enclosed within angle brackets <code>&lt;dynamic_value&gt;</code> and are replaced with values from <code>param_values</code>.</li>
