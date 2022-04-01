@@ -1273,7 +1273,7 @@
       &lt;https://api.host.com/conversations?page_ref=gss8ap4g&gt;; rel=&quot;prev&quot;
 </code></pre></div>
 </td></tr></table>
-Given this Link header, we can specify a path of <code>link.next</code> (case-insensitive). This indicates that we are looking in the <code>Link</code> header with a <code>rel</code> of next.
+Given this Link header, we can specify a rel of <code>next</code> (case-insensitive). This indicates that we are looking in the <code>Link</code> header with a <code>rel</code> of next.
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -1282,7 +1282,7 @@ Given this Link header, we can specify a path of <code>link.next</code> (case-in
 <span class="w">  </span><span class="nt">strategy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">link</span><span class="w"></span>
 <span class="w">  </span><span class="nt">configuration</span><span class="p">:</span><span class="w"></span>
 <span class="w">    </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">headers</span><span class="w"></span>
-<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">link.next</span><span class="w"></span>
+<span class="w">    </span><span class="nt">rel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">next</span><span class="w"></span>
 </code></pre></div>
 </td></tr></table></p>
 <p>We can also access links returned in the body. If we receive this value in the body:
