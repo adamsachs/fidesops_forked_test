@@ -567,6 +567,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#data-protection-request" class="md-nav__link">
+    Data Protection Request
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#endpoints" class="md-nav__link">
     Endpoints
   </a>
@@ -1167,6 +1174,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#data-protection-request" class="md-nav__link">
+    Data Protection Request
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#endpoints" class="md-nav__link">
     Endpoints
   </a>
@@ -1470,6 +1484,7 @@
 <li><code>client_config</code></li>
 <li><code>test_request</code></li>
 <li><code>endpoints</code></li>
+<li><code>data_protection_request</code></li>
 </ul>
 <h4 id="connector-params">Connector params</h4>
 <p>The <code>connector_params</code> field is used to describe a list of settings which a user must configure as part of the setup. This section should just include the name of the parameter but not the actual value. These are added as part of the ConnectionConfig <a href="../database_connectors/#set-the-connectionconfigs-secrets">secrets</a>.</p>
@@ -1526,6 +1541,45 @@
 <span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nt">test_request</span><span class="p">:</span><span class="w"></span>
 <span class="w">  </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GET</span><span class="w"></span>
 <span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/3.0/lists</span><span class="w"></span>
+</code></pre></div>
+</td></tr></table></p>
+<h4 id="data-protection-request">Data Protection Request</h4>
+<p>If your third party integration supports something like a GDPR delete endpoint, that can be configured as a <code>data_protection_request</code>.  It has similar attributes to the test request or endpoint requests, but it is generally one endpoint that removes all user PII in one go. 
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="w">  </span><span class="nt">data_protection_request</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">POST</span><span class="w"></span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/v1beta/workspaces/&lt;workspace_name&gt;/regulations</span><span class="w"></span>
+<span class="w">    </span><span class="nt">param_values</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">workspace_name</span><span class="w"></span>
+<span class="w">        </span><span class="nt">connector_param</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">workspace</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">user_id</span><span class="w"></span>
+<span class="w">        </span><span class="nt">identity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">email</span><span class="w"></span>
+<span class="w">    </span><span class="nt">body</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;{&quot;regulation_type&quot;:</span><span class="nv"> </span><span class="s">&quot;Suppress_With_Delete&quot;,</span><span class="nv"> </span><span class="s">&quot;attributes&quot;:</span><span class="nv"> </span><span class="s">{&quot;name&quot;:</span><span class="nv"> </span><span class="s">&quot;userId&quot;,</span><span class="nv"> </span><span class="s">&quot;values&quot;:</span><span class="nv"> </span><span class="s">[&quot;&lt;user_id&gt;&quot;,]}}&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">client_config</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https</span><span class="w"></span>
+<span class="w">      </span><span class="nt">host</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">connector_param</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">config_domain</span><span class="w"></span>
+<span class="w">      </span><span class="nt">authentication</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">strategy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bearer_authentication</span><span class="w"></span>
+<span class="w">        </span><span class="nt">configuration</span><span class="p">:</span><span class="w"></span>
+<span class="w">          </span><span class="nt">username</span><span class="p">:</span><span class="w"></span>
+<span class="w">            </span><span class="nt">connector_param</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">access_token</span><span class="w"></span>
 </code></pre></div>
 </td></tr></table></p>
 <h4 id="endpoints">Endpoints</h4>

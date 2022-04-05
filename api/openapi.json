@@ -5908,6 +5908,9 @@
           },
           "test_request": {
             "$ref": "#/components/schemas/SaaSRequest"
+          },
+          "data_protection_request": {
+            "$ref": "#/components/schemas/SaaSRequest"
           }
         },
         "description": "Used to store endpoint and param configurations for a SaaS connector.\nThis is done to separate the details of how to make the API calls\nfrom the data provided by a given API collection.\n\nThe required fields for the config are converted into a Dataset which is\nmerged with the standard Fidesops Dataset to provide a complete set of dependencies\nfor the graph traversal."
