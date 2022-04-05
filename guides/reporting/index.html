@@ -1213,6 +1213,7 @@ information, or get more detailed information about the status of the requests o
 <p><code>GET api/v1/privacy-request?id=&lt;privacy_request_id&gt;</code></p>
 <p>If an <code>external_id</code> was provided at request creation, we can also track the privacy request using:</p>
 <p><code>GET api/v1/privacy-request?external_id=&lt;external_id&gt;</code></p>
+<p>Please note: These parameters will return matching Privacy Requests based on startswith matches.</p>
 <h3 id="privacy-request-filtering-options">Privacy Request Filtering Options</h3>
 <p>Use the following query params to further filter your privacy requests.  Filters can be chained, for example, </p>
 <p><code>GET api/v1/privacy-request?created_gt=2021-10-01&amp;created_lt=2021-10-05&amp;status=pending</code></p>
