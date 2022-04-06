@@ -593,6 +593,47 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-are-requests-generated" class="md-nav__link">
+    How are requests generated?
+  </a>
+  
+    <nav class="md-nav" aria-label="How are requests generated?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#method" class="md-nav__link">
+    Method
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#path" class="md-nav__link">
+    Path
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#headers-and-query-params" class="md-nav__link">
+    Headers and query params
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#body" class="md-nav__link">
+    Body
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#example-scenarios" class="md-nav__link">
     Example scenarios
   </a>
@@ -1200,6 +1241,47 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-are-requests-generated" class="md-nav__link">
+    How are requests generated?
+  </a>
+  
+    <nav class="md-nav" aria-label="How are requests generated?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#method" class="md-nav__link">
+    Method
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#path" class="md-nav__link">
+    Path
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#headers-and-query-params" class="md-nav__link">
+    Headers and query params
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#body" class="md-nav__link">
+    Body
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#example-scenarios" class="md-nav__link">
     Example scenarios
   </a>
@@ -1671,6 +1753,126 @@
 <span class="w">          </span><span class="nt">connector_param</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="w"></span>
 </code></pre></div>
 </td></tr></table>
+<h2 id="how-are-requests-generated">How are requests generated?</h2>
+<p>The following HTTP request properties are generated for each request based on the endpoint configuration:</p>
+<ul>
+<li>method</li>
+<li>path</li>
+<li>headers</li>
+<li>query params</li>
+<li>body</li>
+</ul>
+<h4 id="method">Method</h4>
+<p>This is a required field since a read, update, or delete endpoint might use any of the HTTP methods to perform the given action.</p>
+<h4 id="path">Path</h4>
+<p>This can be a static value or use placeholders. If the placeholders to build the path are not found at request-time, the request will fail.</p>
+<h4 id="headers-and-query-params">Headers and query params</h4>
+<p>These can also be static or use placeholders. If a placeholder is missing, the request will continue and omit the given header or query param in the request.</p>
+<p>If reference values are used for the placeholders, each value will be processed independently unless the <code>grouped_inputs</code> field is set. The following examples use query params but this applies to headers as well.</p>
+<p><strong>With ungrouped inputs (default)</strong>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nt">read</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GET</span><span class="w"></span>
+<span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/v1/disputes</span><span class="w"></span>
+<span class="w">  </span><span class="nt">query_params</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">charge</span><span class="w"></span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;charge_id&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">line_item</span><span class="w"></span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;line_item_id&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">param_values</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">charge_id</span><span class="w"></span>
+<span class="w">    </span><span class="nt">references</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">dataset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">connector_example</span><span class="w"></span>
+<span class="w">        </span><span class="nt">field</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">charge.id</span><span class="w"></span>
+<span class="w">        </span><span class="nt">direction</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">from</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">line_item_id</span><span class="w"></span>
+<span class="w">    </span><span class="nt">references</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">dataset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">connector_example</span><span class="w"></span>
+<span class="w">        </span><span class="nt">field</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">charge.line_item.id</span><span class="w"></span>
+<span class="w">        </span><span class="nt">direction</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">from</span><span class="w"></span>
+</code></pre></div>
+</td></tr></table>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="l l-Scalar l-Scalar-Plain">GET /v1/disputes?charge=1</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">GET /v1/disputes?charge=2</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">GET /v1/disputes?charge=3</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">GET /v1/disputes?line_item=a</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">GET /v1/disputes?line_item=b</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">GET /v1/disputes?line_item=c</span><span class="w"></span>
+</code></pre></div>
+</td></tr></table></p>
+<p><strong>With grouped inputs</strong>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nt">read</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GET</span><span class="w"></span>
+<span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/v1/disputes</span><span class="w"></span>
+<span class="w">  </span><span class="nt">grouped_inputs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">charge_id</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">payment_intent_id</span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="w">  </span><span class="nt">query_params</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">charge</span><span class="w"></span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;charge_id&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">line_item</span><span class="w"></span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;line_item_id&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">param_values</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">charge_id</span><span class="w"></span>
+<span class="w">    </span><span class="nt">references</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">dataset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">connector_example</span><span class="w"></span>
+<span class="w">        </span><span class="nt">field</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">charge.id</span><span class="w"></span>
+<span class="w">        </span><span class="nt">direction</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">from</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">line_item_id</span><span class="w"></span>
+<span class="w">    </span><span class="nt">references</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">dataset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">connector_example</span><span class="w"></span>
+<span class="w">        </span><span class="nt">field</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">charge.line_item.id</span><span class="w"></span>
+<span class="w">        </span><span class="nt">direction</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">from</span><span class="w"></span>
+</code></pre></div>
+</td></tr></table>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="l l-Scalar l-Scalar-Plain">GET /v1/disputes?charge=1&amp;line_item=a</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">GET /v1/disputes?charge=2&amp;line_item=b</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">GET /v1/disputes?charge=3&amp;line_item=c</span><span class="w"></span>
+</code></pre></div>
+</td></tr></table></p>
+<h4 id="body">Body</h4>
+<p>The body can be static or use placeholders. If the placeholders to build the body are not found at request-time, the request will fail.</p>
 <h2 id="example-scenarios">Example scenarios</h2>
 <h4 id="dynamic-path-with-dataset-references">Dynamic path with dataset references</h4>
 <p><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
