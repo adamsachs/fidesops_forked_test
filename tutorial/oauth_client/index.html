@@ -1101,7 +1101,7 @@
 <p>Our first step is to create an Oauth Client that we can use to authenticate all of our requests.</p>
 <p>Add a method to our Python script that will call the fidesops API to create a token given a <code>client_id</code> and a <code>client_secret</code>:</p>
 <h3 id="define-helper-methods">Define helper methods</h3>
-<p><code>fidesdemo/flaskr/fidesops.py</code>
+<p><code>fidesdemo/flaskr/fidesops.py</code></p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -1126,11 +1126,11 @@
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Creating access token. Status </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;access_token&quot;</span><span class="p">]</span>
 </code></pre></div>
-</td></tr></table></p>
+</td></tr></table>
 <p>Add another method that will both create a client and assign scopes to that client. It's also useful to define a helper method to build 
 Oauth headers at this point:</p>
 <p><code>fidesdemo/flaskr/fidesops.py</code></p>
-<p><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="o">...</span>
@@ -1173,7 +1173,11 @@ Oauth headers at this point:</p>
 <span class="normal">32</span>
 <span class="normal">33</span>
 <span class="normal">34</span>
-<span class="normal">35</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="o">...</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="o">...</span>
+
+
 <span class="k">def</span> <span class="nf">create_oauth_client</span><span class="p">(</span><span class="n">access_token</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create a new OAuth client in fidesops.Returns the response JSON if successful.</span>
@@ -1209,7 +1213,7 @@ Oauth headers at this point:</p>
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Creating Oauth Client. Status </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre></div>
-</td></tr></table></p>
+</td></tr></table>
 <h3 id="call-helper-methods-to-create-oauth-token">Call helper methods to create Oauth token</h3>
 <p>Update our script to call our new functions to create a token for the <code>root</code> client, and then use that token to create a <em>new</em> client 
 with all the scopes.  Finally, we create another token for the new client, and that's what we'll use to 
