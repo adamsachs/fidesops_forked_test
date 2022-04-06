@@ -1608,6 +1608,7 @@
 <li><code>postprocessors</code> An optional list of response post-processing strategies. We will ignore this for the example scenarios below but an in depth-explanation can be found under <a href="../saas_postprocessors/">SaaS Post-Processors</a></li>
 <li><code>pagination</code> An optional strategy used to get the next set of results from APIs with resources spanning multiple pages. Details can be found under <a href="../saas_pagination/">SaaS Pagination</a>.</li>
 <li><code>grouped_inputs</code> An optional list of reference fields whose inputs are dependent upon one another.  For example, an endpoint may need both an <code>organization_id</code> and a <code>project_id</code> from another endpoint.  These aren't independent values, as a <code>project_id</code> belongs to an <code>organization_id</code>.  You would specify this as ["organization_id", "project_id"].</li>
+<li><code>client_config</code> Specify optional embedded Client Configs if an individual request needs a different protocol, host, or authentication strategy from the base Client Config</li>
 </ul>
 </li>
 </ul>

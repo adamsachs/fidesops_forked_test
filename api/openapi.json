@@ -5966,6 +5966,9 @@
               "$ref": "#/components/schemas/ParamValue"
             }
           },
+          "client_config": {
+            "$ref": "#/components/schemas/ClientConfig"
+          },
           "data_path": {
             "title": "Data Path",
             "type": "string"
