@@ -1113,14 +1113,14 @@
 <h1 id="admin-ui">Admin UI</h1>
 <p>We include some user-related endpoints for the Fidesops Admin UI. In this section, we'll cover:</p>
 <ul>
-<li>I need permissions to be able to create a user. So how do I create the first user?</li>
-<li>How do I create other users?</li>
-<li>How do I log in and log out?</li>
+<li>How to create the first user</li>
+<li>How to create other users?</li>
+<li>How to log in and log out?</li>
 </ul>
 <h2 id="creating-the-first-user">Creating the first user</h2>
-<p>To create the first user, run the following <code>make</code> command:</p>
-<p><code>make user</code></p>
-<p>After supplying a name and suitable password, this will create an Admin Root UI User that you can use to login and create other users.</p>
+<p>To create the first user:</p>
+<p>In the top-level <code>fidesops</code> directory, run <code>make user</code>.</p>
+<p>Wait for a prompt to supply a username and password (password requires 8 or more characters, upper and lowercase chars, a number, and a symbol). This will create an Admin Root UI User that you can use to login and create other users.</p>
 <h2 id="logging-in">Logging in</h2>
 <p><code>POST api/v1/login</code> with your username and password in the request, and you will be issued a token with all scopes (for now)
 that can be used to make subsequent requests.</p>
