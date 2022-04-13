@@ -13,6 +13,7 @@ env:
 
 jobs:
   push-fidesops:
+    if: github.repository == 'ethyca/fidesops' 
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
