@@ -707,6 +707,98 @@
         ]
       }
     },
+    "/api/v1/drp/exercise": {
+      "post": {
+        "tags": [
+          "DRP"
+        ],
+        "summary": "Create Drp Privacy Request",
+        "description": "Given a drp privacy request body, create and execute\na corresponding Fidesops PrivacyRequest",
+        "operationId": "create_drp_privacy_request_api_v1_drp_exercise_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DrpPrivacyRequestCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PrivacyRequestDRPStatusResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/drp/status": {
+      "get": {
+        "tags": [
+          "DRP"
+        ],
+        "summary": "Get Request Status Drp",
+        "description": "Returns PrivacyRequest information where the respective privacy request is associated with\na policy that implements a Data Rights Protocol action.",
+        "operationId": "get_request_status_drp_api_v1_drp_status_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Request Id",
+              "type": "string"
+            },
+            "name": "request_id",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PrivacyRequestDRPStatusResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2ClientCredentialsBearer": [
+              "privacy-request:read"
+            ]
+          }
+        ]
+      }
+    },
     "/api/v1/cryptography/encryption/key": {
       "get": {
         "tags": [
@@ -863,24 +955,13 @@
           "Masking"
         ],
         "summary": "Mask Value",
-        "description": "Masks the value provided using the provided masking strategy",
+        "description": "Masks the value(s) provided using the provided masking strategy",
         "operationId": "mask_value_api_v1_masking_mask_put",
-        "parameters": [
-          {
-            "required": true,
-            "schema": {
-              "title": "Value",
-              "type": "string"
-            },
-            "name": "value",
-            "in": "query"
-          }
-        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PolicyMaskingSpec"
+                "$ref": "#/components/schemas/MaskingAPIRequest"
               }
             }
           },
@@ -2320,16 +2401,16 @@
           "Privacy Requests"
         ],
         "summary": "Get Request Status",
-        "description": "Returns PrivacyRequest information. Supports a variety of optional query params.\n\nTo fetch a single privacy request, use the id query param `?id=`.\nTo see individual execution logs, use the verbose query param `?verbose=True`.",
+        "description": "Returns PrivacyRequest information. Supports a variety of optional query params.\n\nTo fetch a single privacy request, use the request_id query param `?request_id=`.\nTo see individual execution logs, use the verbose query param `?verbose=True`.",
         "operationId": "get_request_status_api_v1_privacy_request_get",
         "parameters": [
           {
             "required": false,
             "schema": {
-              "title": "Id",
+              "title": "Request Id",
               "type": "string"
             },
-            "name": "id",
+            "name": "request_id",
             "in": "query"
           },
           {
@@ -2344,16 +2425,8 @@
             "required": false,
             "schema": {
               "title": "Created Lt",
-              "anyOf": [
-                {
-                  "type": "string",
-                  "format": "date"
-                },
-                {
-                  "type": "string",
-                  "format": "date-time"
-                }
-              ]
+              "type": "string",
+              "format": "date-time"
             },
             "name": "created_lt",
             "in": "query"
@@ -2362,16 +2435,8 @@
             "required": false,
             "schema": {
               "title": "Created Gt",
-              "anyOf": [
-                {
-                  "type": "string",
-                  "format": "date"
-                },
-                {
-                  "type": "string",
-                  "format": "date-time"
-                }
-              ]
+              "type": "string",
+              "format": "date-time"
             },
             "name": "created_gt",
             "in": "query"
@@ -2380,16 +2445,8 @@
             "required": false,
             "schema": {
               "title": "Started Lt",
-              "anyOf": [
-                {
-                  "type": "string",
-                  "format": "date"
-                },
-                {
-                  "type": "string",
-                  "format": "date-time"
-                }
-              ]
+              "type": "string",
+              "format": "date-time"
             },
             "name": "started_lt",
             "in": "query"
@@ -2398,16 +2455,8 @@
             "required": false,
             "schema": {
               "title": "Started Gt",
-              "anyOf": [
-                {
-                  "type": "string",
-                  "format": "date"
-                },
-                {
-                  "type": "string",
-                  "format": "date-time"
-                }
-              ]
+              "type": "string",
+              "format": "date-time"
             },
             "name": "started_gt",
             "in": "query"
@@ -2416,16 +2465,8 @@
             "required": false,
             "schema": {
               "title": "Completed Lt",
-              "anyOf": [
-                {
-                  "type": "string",
-                  "format": "date"
-                },
-                {
-                  "type": "string",
-                  "format": "date-time"
-                }
-              ]
+              "type": "string",
+              "format": "date-time"
             },
             "name": "completed_lt",
             "in": "query"
@@ -2434,16 +2475,8 @@
             "required": false,
             "schema": {
               "title": "Completed Gt",
-              "anyOf": [
-                {
-                  "type": "string",
-                  "format": "date"
-                },
-                {
-                  "type": "string",
-                  "format": "date-time"
-                }
-              ]
+              "type": "string",
+              "format": "date-time"
             },
             "name": "completed_gt",
             "in": "query"
@@ -2452,16 +2485,8 @@
             "required": false,
             "schema": {
               "title": "Errored Lt",
-              "anyOf": [
-                {
-                  "type": "string",
-                  "format": "date"
-                },
-                {
-                  "type": "string",
-                  "format": "date-time"
-                }
-              ]
+              "type": "string",
+              "format": "date-time"
             },
             "name": "errored_lt",
             "in": "query"
@@ -2470,16 +2495,8 @@
             "required": false,
             "schema": {
               "title": "Errored Gt",
-              "anyOf": [
-                {
-                  "type": "string",
-                  "format": "date"
-                },
-                {
-                  "type": "string",
-                  "format": "date-time"
-                }
-              ]
+              "type": "string",
+              "format": "date-time"
             },
             "name": "errored_gt",
             "in": "query"
@@ -2873,7 +2890,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ReviewPrivacyRequestIds"
+                "$ref": "#/components/schemas/DenyPrivacyRequests"
               }
             }
           },
@@ -3460,6 +3477,77 @@
       }
     },
     "/api/v1/user": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get Users",
+        "description": "Returns a paginated list of all users",
+        "operationId": "get_users_api_v1_user_get",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "title": "Username",
+              "type": "string"
+            },
+            "name": "username",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Page",
+              "minimum": 1.0,
+              "type": "integer",
+              "default": 1
+            },
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Size",
+              "maximum": 100.0,
+              "minimum": 1.0,
+              "type": "integer",
+              "default": 50
+            },
+            "name": "size",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Page_UserResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2ClientCredentialsBearer": [
+              "user:read"
+            ]
+          }
+        ]
+      },
       "post": {
         "tags": [
           "Users"
@@ -3509,6 +3597,112 @@
       }
     },
     "/api/v1/user/{user_id}": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get User",
+        "description": "Returns a User based on an Id",
+        "operationId": "get_user_api_v1_user__user_id__get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "User Id",
+              "type": "string"
+            },
+            "name": "user_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2ClientCredentialsBearer": [
+              "user:read"
+            ]
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Update User",
+        "description": "Update a user given a `user_id`. By default this is limited to users\nupdating their own data.",
+        "operationId": "update_user_api_v1_user__user_id__put",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "User Id",
+              "type": "string"
+            },
+            "name": "user_id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2ClientCredentialsBearer": [
+              "user:update"
+            ]
+          }
+        ]
+      },
       "delete": {
         "tags": [
           "Users"
@@ -3551,6 +3745,66 @@
         ]
       }
     },
+    "/api/v1/user/{user_id}/reset-password": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Update User Password",
+        "description": "Update a user's password given a `user_id`. By default this is limited to users\nupdating their own data.",
+        "operationId": "update_user_password_api_v1_user__user_id__reset_password_post",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "User Id",
+              "type": "string"
+            },
+            "name": "user_id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserPasswordReset"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2ClientCredentialsBearer": [
+              "user:reset-password"
+            ]
+          }
+        ]
+      }
+    },
     "/api/v1/login": {
       "post": {
         "tags": [
@@ -3575,7 +3829,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AccessToken"
+                  "$ref": "#/components/schemas/UserLoginResponse"
                 }
               }
             }
@@ -3609,6 +3863,169 @@
         "security": [
           {
             "OAuth2ClientCredentialsBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/user/{user_id}/permission": {
+      "get": {
+        "tags": [
+          "User Permissions"
+        ],
+        "summary": "Get User Permissions",
+        "operationId": "get_user_permissions_api_v1_user__user_id__permission_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "User Id",
+              "type": "string"
+            },
+            "name": "user_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserPermissionsResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2ClientCredentialsBearer": [
+              "user-permission:read"
+            ]
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "User Permissions"
+        ],
+        "summary": "Update User Permissions",
+        "operationId": "update_user_permissions_api_v1_user__user_id__permission_put",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "User Id",
+              "type": "string"
+            },
+            "name": "user_id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserPermissionsEdit"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserPermissionsResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2ClientCredentialsBearer": [
+              "user-permission:update"
+            ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "User Permissions"
+        ],
+        "summary": "Create User Permissions",
+        "operationId": "create_user_permissions_api_v1_user__user_id__permission_post",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "User Id",
+              "type": "string"
+            },
+            "name": "user_id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserPermissionsCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserPermissionsResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2ClientCredentialsBearer": [
+              "user-permission:create"
+            ]
           }
         ]
       }
@@ -3646,6 +4063,7 @@
           "erasure",
           "update"
         ],
+        "type": "string",
         "description": "The purpose of a particular privacy request"
       },
       "AesDecryptionRequest": {
@@ -4229,6 +4647,100 @@
         },
         "description": "Describes whether or not the parent dataset is traversable; if not, includes\nan error message describing the traversal issues."
       },
+      "DenyPrivacyRequests": {
+        "title": "DenyPrivacyRequests",
+        "required": [
+          "request_ids"
+        ],
+        "type": "object",
+        "properties": {
+          "request_ids": {
+            "title": "Request Ids",
+            "maxItems": 50,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "reason": {
+            "title": "Reason",
+            "type": "string"
+          }
+        },
+        "description": "Pass in a list of privacy request ids and rejection reason"
+      },
+      "DrpAction": {
+        "title": "DrpAction",
+        "enum": [
+          "access",
+          "deletion",
+          "sale:opt_out",
+          "sale:opt_in",
+          "access:categories",
+          "access:specific"
+        ],
+        "description": "Enum to hold valid DRP actions. For more details, see:\nhttps://github.com/consumer-reports-digital-lab/data-rights-protocol#301-supported-rights-actions"
+      },
+      "DrpMeta": {
+        "title": "DrpMeta",
+        "required": [
+          "version"
+        ],
+        "type": "object",
+        "properties": {
+          "version": {
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "description": "Enum to hold Drp metadata. Only version is supported at this time"
+      },
+      "DrpPrivacyRequestCreate": {
+        "title": "DrpPrivacyRequestCreate",
+        "required": [
+          "meta",
+          "exercise",
+          "identity"
+        ],
+        "type": "object",
+        "properties": {
+          "meta": {
+            "$ref": "#/components/schemas/DrpMeta"
+          },
+          "regime": {
+            "$ref": "#/components/schemas/DrpRegime"
+          },
+          "exercise": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DrpAction"
+            }
+          },
+          "relationships": {
+            "title": "Relationships",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "identity": {
+            "title": "Identity",
+            "type": "string"
+          },
+          "status_callback": {
+            "title": "Status Callback",
+            "type": "string"
+          }
+        },
+        "description": "Data required to create a DRP PrivacyRequest"
+      },
+      "DrpRegime": {
+        "title": "DrpRegime",
+        "enum": [
+          "ccpa"
+        ],
+        "description": "Enum to hold Drp Regime. Only ccpa supported at this time"
+      },
       "DryRunDatasetResponse": {
         "title": "DryRunDatasetResponse",
         "required": [
@@ -4696,6 +5208,10 @@
           "return_all_elements": {
             "title": "Return All Elements",
             "type": "boolean"
+          },
+          "read_only": {
+            "title": "Read Only",
+            "type": "boolean"
           }
         },
         "description": "Fidesops-specific annotations used for query traversal"
@@ -4894,20 +5410,46 @@
         "additionalProperties": false,
         "description": "MariaDB Secrets Schema for API Docs"
       },
+      "MaskingAPIRequest": {
+        "title": "MaskingAPIRequest",
+        "required": [
+          "values",
+          "masking_strategy"
+        ],
+        "type": "object",
+        "properties": {
+          "values": {
+            "title": "Values",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "masking_strategy": {
+            "$ref": "#/components/schemas/PolicyMaskingSpec"
+          }
+        },
+        "description": "The API Request for masking operations"
+      },
       "MaskingAPIResponse": {
         "title": "MaskingAPIResponse",
         "required": [
-          "plain"
+          "plain",
+          "masked_values"
         ],
         "type": "object",
         "properties": {
           "plain": {
             "title": "Plain",
-            "type": "string"
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
-          "masked_value": {
-            "title": "Masked Value",
-            "type": "string"
+          "masked_values": {
+            "title": "Masked Values",
+            "type": "array",
+            "items": {}
           }
         },
         "description": "The API Response returned upon masking completion"
@@ -5272,6 +5814,40 @@
           }
         }
       },
+      "Page_UserResponse_": {
+        "title": "Page[UserResponse]",
+        "required": [
+          "items",
+          "total",
+          "page",
+          "size"
+        ],
+        "type": "object",
+        "properties": {
+          "items": {
+            "title": "Items",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserResponse"
+            }
+          },
+          "total": {
+            "title": "Total",
+            "minimum": 0.0,
+            "type": "integer"
+          },
+          "page": {
+            "title": "Page",
+            "minimum": 1.0,
+            "type": "integer"
+          },
+          "size": {
+            "title": "Size",
+            "minimum": 1.0,
+            "type": "integer"
+          }
+        }
+      },
       "ParamValue": {
         "title": "ParamValue",
         "required": [
@@ -5316,6 +5892,9 @@
             "title": "Key",
             "pattern": "^[a-zA-Z0-9_.]+$",
             "type": "string"
+          },
+          "drp_action": {
+            "$ref": "#/components/schemas/DrpAction"
           }
         },
         "description": "An external representation of a Fidesops Policy"
@@ -5378,6 +5957,9 @@
             "title": "Key",
             "pattern": "^[a-zA-Z0-9_.]+$",
             "type": "string"
+          },
+          "drp_action": {
+            "$ref": "#/components/schemas/DrpAction"
           },
           "rules": {
             "title": "Rules",
@@ -5583,6 +6165,59 @@
         },
         "description": "Data required to create a PrivacyRequest"
       },
+      "PrivacyRequestDRPStatus": {
+        "title": "PrivacyRequestDRPStatus",
+        "enum": [
+          "open",
+          "in_progress",
+          "fulfilled",
+          "revoked",
+          "denied",
+          "expired"
+        ],
+        "description": "A list of privacy request statuses specified by the Data Rights Protocol."
+      },
+      "PrivacyRequestDRPStatusResponse": {
+        "title": "PrivacyRequestDRPStatusResponse",
+        "required": [
+          "request_id",
+          "received_at",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "request_id": {
+            "title": "Request Id",
+            "type": "string"
+          },
+          "received_at": {
+            "title": "Received At",
+            "type": "string",
+            "format": "date-time"
+          },
+          "expected_by": {
+            "title": "Expected By",
+            "type": "string",
+            "format": "date-time"
+          },
+          "processing_details": {
+            "title": "Processing Details",
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/PrivacyRequestDRPStatus"
+          },
+          "reason": {
+            "title": "Reason",
+            "type": "string"
+          },
+          "user_verification_url": {
+            "title": "User Verification Url",
+            "type": "string"
+          }
+        },
+        "description": "A Fidesops PrivacyRequest updated to fit the Data Rights Protocol specification."
+      },
       "PrivacyRequestIdentity": {
         "title": "PrivacyRequestIdentity",
         "type": "object",
@@ -5705,6 +6340,7 @@
           "paused",
           "error"
         ],
+        "type": "string",
         "description": "Enum for privacy request statuses, reflecting where they are in the Privacy Request Lifecycle"
       },
       "PrivacyRequestVerboseResponse": {
@@ -6390,6 +7026,14 @@
         ],
         "type": "object",
         "properties": {
+          "first_name": {
+            "title": "First Name",
+            "type": "string"
+          },
+          "last_name": {
+            "title": "Last Name",
+            "type": "string"
+          },
           "username": {
             "title": "Username",
             "type": "string"
@@ -6433,6 +7077,156 @@
           }
         },
         "description": "Similar to UserCreate except we do not need the extra validation on username and password"
+      },
+      "UserLoginResponse": {
+        "title": "UserLoginResponse",
+        "required": [
+          "user_data",
+          "token_data"
+        ],
+        "type": "object",
+        "properties": {
+          "user_data": {
+            "$ref": "#/components/schemas/UserResponse"
+          },
+          "token_data": {
+            "$ref": "#/components/schemas/AccessToken"
+          }
+        },
+        "description": "Similar to UserResponse except with an access token"
+      },
+      "UserPasswordReset": {
+        "title": "UserPasswordReset",
+        "required": [
+          "old_password",
+          "new_password"
+        ],
+        "type": "object",
+        "properties": {
+          "old_password": {
+            "title": "Old Password",
+            "type": "string"
+          },
+          "new_password": {
+            "title": "New Password",
+            "type": "string"
+          }
+        },
+        "description": "Contains both old and new passwords when resetting a password"
+      },
+      "UserPermissionsCreate": {
+        "title": "UserPermissionsCreate",
+        "required": [
+          "scopes"
+        ],
+        "type": "object",
+        "properties": {
+          "scopes": {
+            "title": "Scopes",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "description": "Data required to create a FidesopsUserPermissions record"
+      },
+      "UserPermissionsEdit": {
+        "title": "UserPermissionsEdit",
+        "required": [
+          "scopes",
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "scopes": {
+            "title": "Scopes",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          }
+        },
+        "description": "Data required to edit a FidesopsUserPermissions record"
+      },
+      "UserPermissionsResponse": {
+        "title": "UserPermissionsResponse",
+        "required": [
+          "scopes",
+          "id",
+          "user_id"
+        ],
+        "type": "object",
+        "properties": {
+          "scopes": {
+            "title": "Scopes",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "user_id": {
+            "title": "User Id",
+            "type": "string"
+          }
+        },
+        "description": "Response after creating, editing, or retrieving a FidesopsUserPermissions record"
+      },
+      "UserResponse": {
+        "title": "UserResponse",
+        "required": [
+          "id",
+          "username",
+          "created_at"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "username": {
+            "title": "Username",
+            "type": "string"
+          },
+          "created_at": {
+            "title": "Created At",
+            "type": "string",
+            "format": "date-time"
+          },
+          "first_name": {
+            "title": "First Name",
+            "type": "string"
+          },
+          "last_name": {
+            "title": "Last Name",
+            "type": "string"
+          }
+        },
+        "description": "Response after requesting a User"
+      },
+      "UserUpdate": {
+        "title": "UserUpdate",
+        "type": "object",
+        "properties": {
+          "first_name": {
+            "title": "First Name",
+            "type": "string"
+          },
+          "last_name": {
+            "title": "Last Name",
+            "type": "string"
+          }
+        },
+        "description": "Data required to update a FidesopsUser"
       },
       "ValidateDatasetResponse": {
         "title": "ValidateDatasetResponse",

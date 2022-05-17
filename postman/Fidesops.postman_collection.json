@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "179a2ba7-1c31-4398-a984-ab8d3b308bb1",
+		"_postman_id": "4cf21904-951b-45f2-9e0a-bab994b5d534",
 		"name": "Fidesops",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -774,7 +774,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/privacy-request/?id={{privacy_request_id}}&verbose=True",
+							"raw": "{{host}}/privacy-request/?request_id={{privacy_request_id}}&verbose=True",
 							"host": [
 								"{{host}}"
 							],
@@ -784,7 +784,7 @@
 							],
 							"query": [
 								{
-									"key": "id",
+									"key": "request_id",
 									"value": "{{privacy_request_id}}"
 								},
 								{
@@ -880,7 +880,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"request_ids\": [\"{{privacy_request_id}}\", \"bad_id\"]}",
+							"raw": "{\"request_ids\": [\"{{privacy_request_id}}\", \"bad_id\"], \"reason\": \"{{denial_reason}}\"}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1013,7 +1013,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": " {\n    \"strategy\": \"random_string_rewrite\",\n    \"configuration\": {\n        \"length\": 20,\n        \"format_preservation\": {\n            \"suffix\": \"@masked.com\"\n        }\n        \n    }\n}\n",
+							"raw": " {\n    \"values\": [\"test@example.com\"],\n    \"masking_strategy\": {\n        \"strategy\": \"random_string_rewrite\",\n        \"configuration\": {\n            \"length\": 20,\n            \"format_preservation\": {\n                \"suffix\": \"@masked.com\"\n            }\n            \n        }\n    }\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1021,19 +1021,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/masking/mask?value=test@example.com",
+							"raw": "{{host}}/masking/mask",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"masking",
 								"mask"
-							],
-							"query": [
-								{
-									"key": "value",
-									"value": "test@example.com"
-								}
 							]
 						}
 					},
@@ -2630,7 +2624,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"fides_key\": \"hubspot_connector_example\",\n    \"name\": \"Hubspot SaaS Config\",\n    \"description\": \"A sample schema representing the Hubspot connector for Fidesops\",\n    \"version\": \"0.0.1\",\n    \"connector_params\": [\n        {\n            \"name\": \"domain\"\n        },\n        {\n            \"name\": \"hapikey\"\n        }\n    ],\n    \"client_config\": {\n        \"protocol\": \"https\",\n        \"host\": {\n            \"connector_param\": \"domain\"\n        },\n        \"authentication\": {\n            \"strategy\": \"query_param\",\n            \"configuration\": {\n                \"token\": {\n                    \"connector_param\": \"hapikey\"\n                }\n            }\n        }\n    },\n    \"test_request\": {\n        \"method\": \"GET\",\n        \"path\": \"/companies/v2/companies/paged\"\n    },\n    \"endpoints\": [\n        {\n            \"name\": \"contacts\",\n            \"requests\": {\n                \"read\": {\n                    \"path\": \"/crm/v3/objects/contacts/search\",\n                    \"method\": \"POST\",\n                    \"body\": \"{ \\\"filterGroups\\\": [{ \\\"filters\\\": [{ \\\"value\\\": \\\"<email>\\\", \\\"propertyName\\\": \\\"email\\\", \\\"operator\\\": \\\"EQ\\\" }] }] }\",\n                    \"query_params\": [\n                        {\n                            \"name\": \"limit\",\n                            \"value\": 100\n                        }\n                    ],\n                    \"param_values\": [\n                        {\n                            \"name\": \"email\",\n                            \"identity\": \"email\"\n                        }\n                    ],\n                    \"postprocessors\": [\n                        {\n                            \"strategy\": \"unwrap\",\n                            \"configuration\": {\n                                \"data_path\": \"results\"\n                            }\n                        }\n                    ],\n                    \"pagination\": {\n                        \"strategy\": \"link\",\n                        \"configuration\": {\n                            \"source\": \"body\",\n                            \"path\": \"paging.next.link\"\n                        }\n                    }\n                },\n                \"update\": {\n                    \"path\": \"/crm/v3/objects/contacts/<contactId>\",\n                    \"method\": \"PATCH\",\n                    \"body\": \"{ \\\"properties\\\": { <masked_object_fields> } }\",\n                    \"param_values\": [\n                        {\n                            \"name\": \"contactId\",\n                            \"references\": [\n                                {\n                                    \"dataset\": \"hubspot_connector_example\",\n                                    \"field\": \"contacts_search.id\",\n                                    \"direction\": \"from\"\n                                }\n                            ]\n                        }\n                    ]\n                }\n            }\n        },\n        {\n            \"name\": \"owners\",\n            \"requests\": {\n                \"read\": {\n                    \"path\": \"/crm/v3/owners\",\n                    \"method\": \"GET\",\n                    \"query_params\": [\n                        {\n                            \"name\": \"email\",\n                            \"value\": \"<email>\"\n                        },\n                        {\n                            \"name\": \"limit\",\n                            \"value\": 100\n                        }\n                    ],\n                    \"param_values\": [\n                        {\n                            \"name\": \"email\",\n                            \"identity\": \"email\"\n                        }\n                    ],\n                    \"postprocessors\": [\n                        {\n                            \"strategy\": \"unwrap\",\n                            \"configuration\": {\n                                \"data_path\": \"results\"\n                            }\n                        }\n                    ],\n                    \"pagination\": {\n                        \"strategy\": \"link\",\n                        \"configuration\": {\n                            \"source\": \"body\",\n                            \"path\": \"paging.next.link\"\n                        }\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"subscription_preferences\",\n            \"requests\": {\n                \"read\": {\n                    \"path\": \"/communication-preferences/v3/status/email/<email>\",\n                    \"method\": \"GET\",\n                    \"param_values\": [\n                        {\n                            \"name\": \"email\",\n                            \"identity\": \"email\"\n                        }\n                    ]\n                },\n                \"update\": {\n                    \"path\": \"/communication-preferences/v3/unsubscribe\",\n                    \"method\": \"POST\",\n                    \"body\": \"{ \\\"emailAddress\\\": \\\"<email>\\\", \\\"subscriptionId\\\": \\\"<subscriptionId>\\\", \\\"legalBasis\\\": \\\"LEGITIMATE_INTEREST_CLIENT\\\", \\\"legalBasisExplanation\\\": \\\"At users request, we opted them out\\\" }\",\n                    \"param_values\": [\n                        {\n                            \"name\": \"email\",\n                            \"identity\": \"email\"\n                        },\n                        {\n                            \"name\": \"subscriptionId\",\n                            \"references\": [\n                                {\n                                    \"dataset\": \"hubspot_connector_example\",\n                                    \"field\": \"subscription.id\",\n                                    \"direction\": \"from\"\n                                }\n                            ]\n                        }\n                    ]\n                }\n            }\n        }\n    ]\n}",
+									"raw": "{\n        \"fides_key\": \"hubspot_connector_example\",\n        \"name\": \"Hubspot SaaS Config\",\n        \"description\": \"A sample schema representing the Hubspot connector for Fidesops\",\n        \"version\": \"0.0.1\",\n        \"connector_params\": [\n            {\n                \"name\": \"domain\"\n            },\n            {\n                \"name\": \"hapikey\"\n            }\n        ],\n        \"client_config\": {\n            \"protocol\": \"https\",\n            \"host\": {\n                \"connector_param\": \"domain\"\n            },\n            \"authentication\": {\n                \"strategy\": \"query_param\",\n                \"configuration\": {\n                    \"token\": {\n                        \"connector_param\": \"hapikey\"\n                    }\n                }\n            }\n        },\n        \"test_request\": {\n            \"method\": \"GET\",\n            \"path\": \"/companies/v2/companies/paged\"\n        },\n        \"endpoints\": [\n            {\n                \"name\": \"contacts\",\n                \"requests\": {\n                    \"read\": {\n                        \"path\": \"/crm/v3/objects/contacts/search\",\n                        \"method\": \"POST\",\n                        \"body\": \"{ \\\"filterGroups\\\": [{ \\\"filters\\\": [{ \\\"value\\\": \\\"<email>\\\", \\\"propertyName\\\": \\\"email\\\", \\\"operator\\\": \\\"EQ\\\" }] }] }\",\n                        \"query_params\": [\n                            {\n                                \"name\": \"limit\",\n                                \"value\": 100\n                            }\n                        ],\n                        \"param_values\": [\n                            {\n                                \"name\": \"email\",\n                                \"identity\": \"email\"\n                            }\n                        ],\n                        \"postprocessors\": [\n                            {\n                                \"strategy\": \"unwrap\",\n                                \"configuration\": {\n                                    \"data_path\": \"results\"\n                                }\n                            }\n                        ],\n                        \"pagination\": {\n                            \"strategy\": \"link\",\n                            \"configuration\": {\n                                \"source\": \"body\",\n                                \"path\": \"paging.next.link\"\n                            }\n                        }\n                    },\n                    \"update\": {\n                        \"path\": \"/crm/v3/objects/contacts/<contactId>\",\n                        \"method\": \"PATCH\",\n                        \"body\": \"{ <masked_object_fields> }\",\n                        \"param_values\": [\n                            {\n                                \"name\": \"contactId\",\n                                \"references\": [\n                                    {\n                                        \"dataset\": \"hubspot_connector_example\",\n                                        \"field\": \"contacts.id\",\n                                        \"direction\": \"from\"\n                                    }\n                                ]\n                            }\n                        ]\n                    }\n                }\n            },\n            {\n                \"name\": \"owners\",\n                \"requests\": {\n                    \"read\": {\n                        \"path\": \"/crm/v3/owners\",\n                        \"method\": \"GET\",\n                        \"query_params\": [\n                            {\n                                \"name\": \"email\",\n                                \"value\": \"<email>\"\n                            },\n                            {\n                                \"name\": \"limit\",\n                                \"value\": 100\n                            }\n                        ],\n                        \"param_values\": [\n                            {\n                                \"name\": \"email\",\n                                \"identity\": \"email\"\n                            }\n                        ],\n                        \"postprocessors\": [\n                            {\n                                \"strategy\": \"unwrap\",\n                                \"configuration\": {\n                                    \"data_path\": \"results\"\n                                }\n                            }\n                        ],\n                        \"pagination\": {\n                            \"strategy\": \"link\",\n                            \"configuration\": {\n                                \"source\": \"body\",\n                                \"path\": \"paging.next.link\"\n                            }\n                        }\n                    }\n                }\n            },\n            {\n                \"name\": \"subscription_preferences\",\n                \"requests\": {\n                    \"read\": {\n                        \"path\": \"/communication-preferences/v3/status/email/<email>\",\n                        \"method\": \"GET\",\n                        \"param_values\": [\n                            {\n                                \"name\": \"email\",\n                                \"identity\": \"email\"\n                            }\n                        ]\n                    },\n                    \"update\": {\n                        \"path\": \"/communication-preferences/v3/unsubscribe\",\n                        \"method\": \"POST\",\n                        \"body\": \"{ \\\"emailAddress\\\": \\\"<email>\\\", \\\"subscriptionId\\\": \\\"<subscriptionId>\\\", \\\"legalBasis\\\": \\\"LEGITIMATE_INTEREST_CLIENT\\\", \\\"legalBasisExplanation\\\": \\\"At users request, we opted them out\\\" }\",\n                        \"data_path\": \"subscriptionStatuses\",\n                        \"param_values\": [\n                            {\n                                \"name\": \"email\",\n                                \"identity\": \"email\"\n                            },\n                            {\n                                \"name\": \"subscriptionId\",\n                                \"references\": [\n                                    {\n                                        \"dataset\": \"hubspot_connector_example\",\n                                        \"field\": \"subscription_preferences.id\",\n                                        \"direction\": \"from\"\n                                    }\n                                ]\n                            }\n                        ],\n                        \"postprocessors\": [\n                            {\n                                \"strategy\": \"filter\",\n                                \"configuration\": {\n                                    \"field\": \"status\",\n                                    \"value\": \"SUBSCRIBED\"\n                                }\n                            }\n                        ]\n                    }\n                }\n            }\n        ]\n    }",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -3327,6 +3321,67 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "DRP",
+			"item": [
+				{
+					"name": "Exercise",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"meta\": {\"version\": \"0.5\"},\n    \"regime\": \"ccpa\",\n    \"exercise\": [\n        \"access\"\n    ],\n    \"identity\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3RAZXhhbXBsZS5jb20ifQ.4I8XLWnTYp8oMHjN2ypP3Hpg45DIaGNAEmj1QCYONUI\",\n}"
+						},
+						"url": {
+							"raw": "{{host}}/drp/exercise",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"drp",
+								"exercise"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Status",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{client_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/drp/status?request_id={{privacy_request_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"drp",
+								"status"
+							],
+							"query": [
+								{
+									"key": "request_id",
+									"value": "{{privacy_request_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"event": [
@@ -3418,6 +3473,10 @@
 		},
 		{
 			"key": "privacy_request_id",
+			"value": ""
+		},
+		{
+			"key": "denial_reason",
 			"value": ""
 		},
 		{

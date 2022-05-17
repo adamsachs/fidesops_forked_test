@@ -786,8 +786,22 @@
   
   
     <li class="md-nav__item">
-      <a href="../users/" class="md-nav__link">
+      <a href="../admin_ui/" class="md-nav__link">
         Admin UI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../postman/using_postman/" class="md-nav__link">
+        Postman Collection
       </a>
     </li>
   
@@ -1190,7 +1204,7 @@
 <h2 id="how-to-configure-the-fidesops-application">How to configure the Fidesops application</h2>
 <p>The Fidesops application configuration variables are provided in the <code>fidesops.toml</code> file in <code>.toml</code> format. Fidesops will take the first config file it finds from the following locations:</p>
 <ul>
-<li>The location according to the <code>FIDESOPS_CONFIG_PATH</code> environment variable</li>
+<li>The location according to the <code>FIDESOPS__CONFIG_PATH</code> environment variable</li>
 <li>The current working directory (<code>./fidesops.toml</code>)</li>
 <li>The parent of the current working directory (<code>../fidesops.toml</code>)</li>
 <li>The user's home directory (<code>~/fidesops.toml</code>)</li>
@@ -1367,7 +1381,7 @@
 <td><code>FIDESOPS__EXECUTION__TASK_RETRY_COUNT</code></td>
 <td>int</td>
 <td>5</td>
-<td>2</td>
+<td>0</td>
 <td>The number of times a failed request will be retried</td>
 </tr>
 <tr>
@@ -1375,7 +1389,7 @@
 <td><code>FIDESOPS__EXECUTION__TASK_RETRY_DELAY</code></td>
 <td>int</td>
 <td>20</td>
-<td>5</td>
+<td>1</td>
 <td>The delays between retries in seconds</td>
 </tr>
 <tr>
@@ -1383,7 +1397,7 @@
 <td><code>FIDESOPS__EXECUTION__TASK_RETRY_BACKOFF</code></td>
 <td>int</td>
 <td>2</td>
-<td>2</td>
+<td>1</td>
 <td>The backoff factor for retries, to space out repeated retries.</td>
 </tr>
 <tr>
@@ -1405,7 +1419,7 @@
 </tbody>
 </table>
 <h2 id="an-example-fidesopstoml-configuration-file">An example <code>fidesops.toml</code> configuration file</h2>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -1432,7 +1446,7 @@
 <span class="normal">25</span>
 <span class="normal">26</span>
 <span class="normal">27</span>
-<span class="normal">28</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>[database]
+<span class="normal">28</span></pre></div></td><td class="code"><div><pre><span></span><code>[database]
 SERVER=&quot;db&quot;
 USER=&quot;postgres&quot;
 PASSWORD=&quot;a-password&quot;
@@ -1460,8 +1474,7 @@ TASK_RETRY_DELAY=20
 TASK_RETRY_BACKOFF=2
 REQUIRE_MANUAL_REQUEST_APPROVAL=True
 MASKING_STRICT=True
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
 <p>Please note: The configuration is case-sensitive, so the variables must be specified in UPPERCASE.</p>
 <h2 id="additional-environment-variables">Additional environment variables</h2>
 <table>
@@ -1474,17 +1487,22 @@ MASKING_STRICT=True
 </thead>
 <tbody>
 <tr>
-<td><code>LOG_PII</code></td>
+<td><code>FIDESOPS__LOG_PII</code></td>
 <td>False</td>
 <td>If this is set to "True", pii values will display unmasked in log output. This variable should always be set to "False" in production systems.</td>
 </tr>
 <tr>
-<td><code>DEV_MODE</code></td>
+<td><code>FIDESOPS__HOT_RELOAD</code></td>
 <td>False</td>
-<td>If "True", the fidesops server will run with hot-reloading of files. This variable should always be set to "False" in production systems.</td>
+<td>If "True", the fidesops server will reload code changes without you needing to restart the server. This variable should always be set to "False" in production systems.</td>
 </tr>
 <tr>
-<td><code>FIDESOPS_CONFIG_PATH</code></td>
+<td><code>FIDESOPS__DEV_MODE</code></td>
+<td>False</td>
+<td>If "True", the fidesops server will log error tracebacks, and log details of third party requests. This variable should always be set to "False" in production systems.</td>
+</tr>
+<tr>
+<td><code>FIDESOPS__CONFIG_PATH</code></td>
 <td>None</td>
 <td>If this variable is set to a path, that path will be used to load .toml files first. That is, any .toml files on this path will override any installed .toml files.</td>
 </tr>
@@ -1600,7 +1618,7 @@ MASKING_STRICT=True
       
         
         <a
-          href="../users/"
+          href="../admin_ui/"
           class="md-footer__link md-footer__link--next"
           aria-label="Next: Admin UI"
           rel="next"
